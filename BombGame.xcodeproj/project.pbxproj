@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 55;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,8 +14,14 @@
 		2C94450E2A7FCEAF00C14CAA /* CategoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C94450D2A7FCEAF00C14CAA /* CategoryButton.swift */; };
 		2C9445102A7FD0BE00C14CAA /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C94450F2A7FD0BE00C14CAA /* MainView.swift */; };
 		2C9445122A7FD0E000C14CAA /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9445112A7FD0E000C14CAA /* MainViewModel.swift */; };
-		A1553F082A801F4300AD9CFC /* bombAnimation.riv in Resources */ = {isa = PBXBuildFile; fileRef = A1553F072A801F4300AD9CFC /* bombAnimation.riv */; };
-		A1553F0B2A801F7900AD9CFC /* RiveRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = A1553F0A2A801F7900AD9CFC /* RiveRuntime */; };
+		2CB633E82A80138E00CEF402 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB633E72A80138E00CEF402 /* GameView.swift */; };
+		2CB633EA2A8013A100CEF402 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB633E92A8013A100CEF402 /* GameViewModel.swift */; };
+		2CB633EC2A8013F700CEF402 /* EndGameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB633EB2A8013F700CEF402 /* EndGameViewModel.swift */; };
+		2CB633EE2A80140E00CEF402 /* EndGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB633ED2A80140E00CEF402 /* EndGameView.swift */; };
+		2CB633F02A80144100CEF402 /* CategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB633EF2A80144100CEF402 /* CategoriesView.swift */; };
+		2CB633F22A80145F00CEF402 /* CategoriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB633F12A80145F00CEF402 /* CategoriesViewModel.swift */; };
+		2CB633F42A80147F00CEF402 /* AssistanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB633F32A80147F00CEF402 /* AssistanceView.swift */; };
+		2CB633F62A8014B900CEF402 /* AssistanceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB633F52A8014B900CEF402 /* AssistanceViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,7 +33,14 @@
 		2C94450D2A7FCEAF00C14CAA /* CategoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryButton.swift; sourceTree = "<group>"; };
 		2C94450F2A7FD0BE00C14CAA /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		2C9445112A7FD0E000C14CAA /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
-		A1553F072A801F4300AD9CFC /* bombAnimation.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = bombAnimation.riv; sourceTree = "<group>"; };
+		2CB633E72A80138E00CEF402 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
+		2CB633E92A8013A100CEF402 /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
+		2CB633EB2A8013F700CEF402 /* EndGameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndGameViewModel.swift; sourceTree = "<group>"; };
+		2CB633ED2A80140E00CEF402 /* EndGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndGameView.swift; sourceTree = "<group>"; };
+		2CB633EF2A80144100CEF402 /* CategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesView.swift; sourceTree = "<group>"; };
+		2CB633F12A80145F00CEF402 /* CategoriesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewModel.swift; sourceTree = "<group>"; };
+		2CB633F32A80147F00CEF402 /* AssistanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssistanceView.swift; sourceTree = "<group>"; };
+		2CB633F52A8014B900CEF402 /* AssistanceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssistanceViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,7 +48,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A1553F0B2A801F7900AD9CFC /* RiveRuntime in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,9 +73,9 @@
 		2C9444EF2A7FCB4D00C14CAA /* BombGame */ = {
 			isa = PBXGroup;
 			children = (
-				2C9444FE2A7FCC0200C14CAA /* App */,
 				2C9445072A7FCDA000C14CAA /* Base */,
 				2C9445062A7FCD9900C14CAA /* Modules */,
+				2C9444FE2A7FCC0200C14CAA /* App */,
 				2C9444FF2A7FCC1400C14CAA /* Resources */,
 				2C9444F62A7FCB4E00C14CAA /* Preview Content */,
 			);
@@ -89,7 +101,6 @@
 		2C9444FF2A7FCC1400C14CAA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				A1553F062A801F3500AD9CFC /* Rive */,
 				2C9444F42A7FCB4E00C14CAA /* Assets.xcassets */,
 			);
 			path = Resources;
@@ -107,6 +118,8 @@
 		2C9445012A7FCCB900C14CAA /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				2CB633EF2A80144100CEF402 /* CategoriesView.swift */,
+				2CB633F12A80145F00CEF402 /* CategoriesViewModel.swift */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -121,6 +134,8 @@
 		2C9445032A7FCCF200C14CAA /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				2CB633E72A80138E00CEF402 /* GameView.swift */,
+				2CB633E92A8013A100CEF402 /* GameViewModel.swift */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -128,6 +143,8 @@
 		2C9445042A7FCCFF00C14CAA /* EndGame */ = {
 			isa = PBXGroup;
 			children = (
+				2CB633ED2A80140E00CEF402 /* EndGameView.swift */,
+				2CB633EB2A8013F700CEF402 /* EndGameViewModel.swift */,
 			);
 			path = EndGame;
 			sourceTree = "<group>";
@@ -135,6 +152,8 @@
 		2C9445052A7FCD6100C14CAA /* Assistance */ = {
 			isa = PBXGroup;
 			children = (
+				2CB633F32A80147F00CEF402 /* AssistanceView.swift */,
+				2CB633F52A8014B900CEF402 /* AssistanceViewModel.swift */,
 			);
 			path = Assistance;
 			sourceTree = "<group>";
@@ -169,14 +188,6 @@
 			path = Buttons;
 			sourceTree = "<group>";
 		};
-		A1553F062A801F3500AD9CFC /* Rive */ = {
-			isa = PBXGroup;
-			children = (
-				A1553F072A801F4300AD9CFC /* bombAnimation.riv */,
-			);
-			path = Rive;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -193,9 +204,6 @@
 			dependencies = (
 			);
 			name = BombGame;
-			packageProductDependencies = (
-				A1553F0A2A801F7900AD9CFC /* RiveRuntime */,
-			);
 			productName = BombGame;
 			productReference = 2C9444ED2A7FCB4D00C14CAA /* BombGame.app */;
 			productType = "com.apple.product-type.application";
@@ -216,7 +224,7 @@
 				};
 			};
 			buildConfigurationList = 2C9444E82A7FCB4D00C14CAA /* Build configuration list for PBXProject "BombGame" */;
-			compatibilityVersion = "Xcode 13.0";
+			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -224,9 +232,6 @@
 				Base,
 			);
 			mainGroup = 2C9444E42A7FCB4D00C14CAA;
-			packageReferences = (
-				A1553F092A801F7900AD9CFC /* XCRemoteSwiftPackageReference "rive-ios" */,
-			);
 			productRefGroup = 2C9444EE2A7FCB4D00C14CAA /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -241,7 +246,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A1553F082A801F4300AD9CFC /* bombAnimation.riv in Resources */,
 				2C9444F82A7FCB4E00C14CAA /* Preview Assets.xcassets in Resources */,
 				2C9444F52A7FCB4E00C14CAA /* Assets.xcassets in Resources */,
 			);
@@ -255,10 +259,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C9445122A7FD0E000C14CAA /* MainViewModel.swift in Sources */,
+				2CB633EE2A80140E00CEF402 /* EndGameView.swift in Sources */,
+				2CB633F62A8014B900CEF402 /* AssistanceViewModel.swift in Sources */,
 				2C94450E2A7FCEAF00C14CAA /* CategoryButton.swift in Sources */,
 				2C9445102A7FD0BE00C14CAA /* MainView.swift in Sources */,
 				2C9444F12A7FCB4D00C14CAA /* BombGameApp.swift in Sources */,
+				2CB633E82A80138E00CEF402 /* GameView.swift in Sources */,
 				2C94450C2A7FCE0E00C14CAA /* ActionButton.swift in Sources */,
+				2CB633EC2A8013F700CEF402 /* EndGameViewModel.swift in Sources */,
+				2CB633F42A80147F00CEF402 /* AssistanceView.swift in Sources */,
+				2CB633F02A80144100CEF402 /* CategoriesView.swift in Sources */,
+				2CB633EA2A8013A100CEF402 /* GameViewModel.swift in Sources */,
+				2CB633F22A80145F00CEF402 /* CategoriesViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -390,7 +402,6 @@
 				DEVELOPMENT_TEAM = 3LUM3CH8UT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "Bomb Game";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -424,7 +435,6 @@
 				DEVELOPMENT_TEAM = 3LUM3CH8UT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = "Bomb Game";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -469,25 +479,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		A1553F092A801F7900AD9CFC /* XCRemoteSwiftPackageReference "rive-ios" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/rive-app/rive-ios.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		A1553F0A2A801F7900AD9CFC /* RiveRuntime */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A1553F092A801F7900AD9CFC /* XCRemoteSwiftPackageReference "rive-ios" */;
-			productName = RiveRuntime;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2C9444E52A7FCB4D00C14CAA /* Project object */;
 }
