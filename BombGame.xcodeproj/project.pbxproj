@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -22,6 +22,7 @@
 		2CB633F22A80145F00CEF402 /* CategoriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB633F12A80145F00CEF402 /* CategoriesViewModel.swift */; };
 		2CB633F42A80147F00CEF402 /* AssistanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB633F32A80147F00CEF402 /* AssistanceView.swift */; };
 		2CB633F62A8014B900CEF402 /* AssistanceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB633F52A8014B900CEF402 /* AssistanceViewModel.swift */; };
+		A1553F0E2A8021D500AD9CFC /* RiveRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = A1553F0D2A8021D500AD9CFC /* RiveRuntime */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1553F0E2A8021D500AD9CFC /* RiveRuntime in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -204,6 +206,9 @@
 			dependencies = (
 			);
 			name = BombGame;
+			packageProductDependencies = (
+				A1553F0D2A8021D500AD9CFC /* RiveRuntime */,
+			);
 			productName = BombGame;
 			productReference = 2C9444ED2A7FCB4D00C14CAA /* BombGame.app */;
 			productType = "com.apple.product-type.application";
@@ -224,7 +229,7 @@
 				};
 			};
 			buildConfigurationList = 2C9444E82A7FCB4D00C14CAA /* Build configuration list for PBXProject "BombGame" */;
-			compatibilityVersion = "Xcode 14.0";
+			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -232,6 +237,9 @@
 				Base,
 			);
 			mainGroup = 2C9444E42A7FCB4D00C14CAA;
+			packageReferences = (
+				A1553F0C2A8021D500AD9CFC /* XCRemoteSwiftPackageReference "rive-ios" */,
+			);
 			productRefGroup = 2C9444EE2A7FCB4D00C14CAA /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -402,6 +410,7 @@
 				DEVELOPMENT_TEAM = 3LUM3CH8UT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Bomb Game";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -435,6 +444,7 @@
 				DEVELOPMENT_TEAM = 3LUM3CH8UT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Bomb Game";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -479,6 +489,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A1553F0C2A8021D500AD9CFC /* XCRemoteSwiftPackageReference "rive-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/rive-app/rive-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A1553F0D2A8021D500AD9CFC /* RiveRuntime */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A1553F0C2A8021D500AD9CFC /* XCRemoteSwiftPackageReference "rive-ios" */;
+			productName = RiveRuntime;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2C9444E52A7FCB4D00C14CAA /* Project object */;
 }
