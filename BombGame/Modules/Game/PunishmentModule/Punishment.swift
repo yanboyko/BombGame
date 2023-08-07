@@ -8,6 +8,7 @@
 import Foundation
 
 enum Punishment: CaseIterable {
+    case clapHandsAfterAnswer
     case clapHandsBeforeAnswer
     case whistleGoodbye
     case swapHands
@@ -15,15 +16,15 @@ enum Punishment: CaseIterable {
     case funnyAccent
     case rhymeAnswers
     case threeLetterNames
-    case animalImpersonations
     case jokeBeforeAnswer
     case famousCharacterImpersonation
     case leftHandPass
     case pantomimeAnswers
-    case singMelody
 
     var text: String {
         switch self {
+        case .clapHandsAfterAnswer:
+            return "В следующем раунде после каждого ответа хлопать в ладоши"
         case .clapHandsBeforeAnswer:
             return "Перед каждым ответом хлопать в ладоши."
         case .whistleGoodbye:
@@ -38,8 +39,6 @@ enum Punishment: CaseIterable {
             return "Отвечать на вопросы только в форме стихотворения или рифмы."
         case .threeLetterNames:
             return "Отвечать, используя только трибуквенные имена в следующем раунде."
-        case .animalImpersonations:
-            return "Отвечать на вопросы, притворяясь различными животными, соответствующими категории."
         case .jokeBeforeAnswer:
             return "Придумайте шутку перед каждым ответом."
         case .famousCharacterImpersonation:
@@ -48,8 +47,6 @@ enum Punishment: CaseIterable {
             return "Передавать 'бомбу' следующему игроку, используя только левую руку."
         case .pantomimeAnswers:
             return "Отвечать на вопросы, используя только пантомиму без слов."
-        case .singMelody:
-            return "Придумайте мелодию или песню и спойте ее перед каждым ответом в следующем раунде."
         }
     }
 
