@@ -7,13 +7,27 @@
 
 import Foundation
 
-final class PunishmentViewModel: ObservableObject {
+@MainActor final class PunishmentViewModel: ObservableObject {
+
+    @Published var punishment: Punishment
 
     func getAnotherQuestion() {
-
+        self.punishment = Punishment.getRandomPunishment()
     }
 
     func restartGame() {
         
+    }
+
+    func goBack() {
+
+    }
+
+    func setOnPause() {
+
+    }
+
+    init(punishment: Punishment) {
+        self.punishment = punishment
     }
 }
