@@ -23,6 +23,7 @@ enum Resources {
         static let categoryFive = "category5"
         static let categorySix = "category6"
         static let bomb = "bomb"
+        static let bombForMain = "bombForMain"
         static let settings = "settingsImage"
         static let helpImage = "helpImage"
         static let circle = "circle"

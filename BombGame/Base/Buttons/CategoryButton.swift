@@ -30,7 +30,7 @@ struct CategoryButton: View {
                 Image(imageName)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 120, height: 120)
+                    .frame(width: 100, height: 100)
                 Text(text)
                     .font(.system(size: 16, weight: .heavy))
                     .foregroundColor(Color(red: 0.98, green: 1, blue: 0))
