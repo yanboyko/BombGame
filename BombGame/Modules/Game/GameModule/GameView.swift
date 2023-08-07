@@ -1,53 +1,48 @@
 import SwiftUI
 
 struct GameView: View {
-
-    private enum Constants {
-        static let bombPurple: Color = Color(red: 0.55, green: 0.24, blue: 0.85)
-    }
-
     @ObservedObject var viewModel: GameViewModel
-
+    
     @State var buttonName = "Запустить"
     
     var body: some View {
         NavigationView {
             ZStack {
-                BombBackgroundView()
+                BackgroundView()
                 VStack {
                     HStack(alignment: .center) {
                         Button {
                             viewModel.goBack()
                         } label: {
-                            Image(systemName: "chevron.left")
+                            Image(systemName: Resources.Image.back)
                                 .foregroundColor(.black)
                         }
                         Spacer()
                         Text("ИГРА")
                             .font(.system(size: 28, weight: .bold))
-                            .foregroundColor(Constants.bombPurple)
+                            .foregroundColor(Resources.Colors.mainPurple)
                             .padding(.bottom)
                         Spacer()
                         Button {
                             viewModel.setOnPause()
                         } label: {
-                            Image("pauseButton")
+                            Image(Resources.Image.pause)
                         }
                     }
                     .padding()
-
+                    
                     Text("Нажмите")
                         .font(.system(size: 28, weight: .bold))
-                        .foregroundColor(Constants.bombPurple)
-                    Text("\("Запустить") чтобы начать игру")
+                        .foregroundColor(Resources.Colors.mainPurple)
+                    Text("\"Запустить\" чтобы начать игру")
                         .multilineTextAlignment(.center)
                         .font(.system(size: 28, weight: .bold))
-                        .foregroundColor(Constants.bombPurple)
-                    Image("bomb")
+                        .foregroundColor(Resources.Colors.mainPurple)
+                    Image(Resources.Image.bomb)
                         .padding(.leading)
-
+                    
                     Spacer()
-
+                    
                     ActionButton(text: $buttonName) {
                         viewModel.startGame()
                     }

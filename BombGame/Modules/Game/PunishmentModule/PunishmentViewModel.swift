@@ -27,7 +27,7 @@ import Foundation
 
     }
 
-    init(punishment: Punishment) {
-        self.punishment = punishment
+    init() {
+        self.punishment = Punishment.getRandomPunishment()
     }
 }

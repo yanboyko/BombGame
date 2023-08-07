@@ -26,6 +26,10 @@ enum Resources {
         static let settings = "settingsImage"
         static let helpImage = "helpImage"
         static let circle = "circle"
+
+        static let punishment = "punishment"
+        static let pause = "pauseButton"
+        static let back = "chevron.left"
         
     }
     

@@ -11,7 +11,7 @@ struct ActionButton: View {
             Text(text)
                 .font(.system(size: 24, weight: .heavy))
                 .foregroundColor(Color(red: 0.98, green: 1, blue: 0))
-              //  .frame(width: 163, height: 20.93976)
+                .frame(width: 163, height: 20.93976)
         }
         .frame(width: 274, height: 79)
         .background(Color(red: 0.51, green: 0.19, blue: 0.65))

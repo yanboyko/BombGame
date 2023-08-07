@@ -8,37 +8,32 @@
 import SwiftUI
 
 struct PunishmentView: View {
-    private enum Constants {
-        static let bombPurple: Color = Color(red: 0.55, green: 0.24, blue: 0.85)
-    }
-
     @ObservedObject var viewModel: PunishmentViewModel
 
     @State var startAgainButtonName = "Начать \n заново"
     @State var anotherQuestionButtonName = "Другоe \n задание"
 
-
     var body: some View {
         ZStack {
-            BombBackgroundView()
+            BackgroundView()
             VStack {
                 HStack(alignment: .center) {
                     Button {
                         viewModel.goBack()
                     } label: {
-                        Image(systemName: "chevron.left")
+                        Image(systemName: Resources.Image.back)
                             .foregroundColor(.black)
                     }
                     Spacer()
                     Text("ИГРА")
                         .font(.system(size: 28, weight: .bold))
-                        .foregroundColor(Constants.bombPurple)
+                        .foregroundColor(Resources.Colors.mainPurple)
                         .padding(.horizontal)
                     Spacer()
                     Button {
                         viewModel.setOnPause()
                     } label: {
-                        Image("pauseButton")
+                        Image(Resources.Image.pause)
                     }
                 }
                 .padding(.horizontal)
@@ -49,13 +44,13 @@ struct PunishmentView: View {
                     .multilineTextAlignment(.center)
                     .padding(.horizontal)
 
-                Image("punishment")
+                Image(Resources.Image.punishment)
 
                 Text(viewModel.punishment.text)
                     .font(.system(size: 24, weight: .bold))
                     .lineLimit(3)
                     .frame(maxHeight: .infinity)
-                    .foregroundColor(Constants.bombPurple)
+                    .foregroundColor(Resources.Colors.mainPurple)
                     .multilineTextAlignment(.center)
                     .padding()
 
@@ -76,6 +71,6 @@ struct PunishmentView: View {
 
 struct PunishmentView_Previews: PreviewProvider {
     static var previews: some View {
-        PunishmentView(viewModel: PunishmentViewModel(punishment: Punishment.getRandomPunishment()))
+        PunishmentView(viewModel: PunishmentViewModel())
     }
 }
