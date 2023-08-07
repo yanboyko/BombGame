@@ -42,6 +42,13 @@ struct AssistanceView: View {
         ("7_rest", ", то проигравший выполняет задание.")
     ]
     
+    var categoryData: [(text: String, imageName: String)] = [
+        ("Про Жизнь", "category3"),
+        ("Знаменитости", "category4"),
+        ("Искусство и Кино", "category5"),
+        ("Природа", "category6")
+    ]
+    
     var categoryImages = ["rules1", "rules2", "rules3", "rules4"]
     
     let columns = [
@@ -102,12 +109,15 @@ struct AssistanceView: View {
                             .font(.system(size: 24, weight: .heavy))
                             .padding(.top, 50)
                         LazyVGrid(columns: columns) {
-                            ForEach(categoryImages, id: \.self) { image in
-                                Image(image)
+                            ForEach(categoryData, id: \.text) { category in
+                                CategoryButton(
+                                    text: Binding.constant(category.text),
+                                    imageName: Binding.constant(category.imageName)
+                                )
                             }
                         }
                     }
-                    .padding(.horizontal, 40)
+                    .padding(.horizontal, 10)
                 }
             }
         }
