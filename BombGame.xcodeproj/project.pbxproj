@@ -202,8 +202,6 @@
 				2C94450B2A7FCE0E00C14CAA /* ActionButton.swift */,
 				2C94450D2A7FCEAF00C14CAA /* CategoryButton.swift */,
 				87CF9F822A8152550080039E /* CircleButton.swift */,
-				87CF9F842A81525F0080039E /* BackgroundView.swift */,
-				87CF9F862A8152710080039E /* Resources.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -231,6 +229,9 @@
 		AB3A489F2A814992004D5B6F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				AB3A48972A814603004D5B6F /* BombBackgroundView.swift */,
+				87CF9F842A81525F0080039E /* BackgroundView.swift */,
+				87CF9F862A8152710080039E /* Resources.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";

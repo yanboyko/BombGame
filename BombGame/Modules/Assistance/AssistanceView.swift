@@ -20,6 +20,7 @@ struct topRulesView: View {
                 )
             Text(text)
                 .font(.system(size: 18, weight: .heavy))
+                .foregroundColor(.black)
                 .multilineTextAlignment(.center)
             Spacer()
         }
@@ -29,6 +30,7 @@ struct topRulesView: View {
 
 struct AssistanceView: View {
     @ObservedObject var viewModel: AssistanceViewModel
+    @Environment(\.presentationMode) var presentationMode
     
     var topRulesViewData: [(number: String, text: String)] = [
         ("1", "Все игроки становятся в круг."),
@@ -48,8 +50,6 @@ struct AssistanceView: View {
         ("Искусство и Кино", "category5"),
         ("Природа", "category6")
     ]
-    
-    var categoryImages = ["rules1", "rules2", "rules3", "rules4"]
     
     let columns = [
         GridItem(.adaptive(minimum: 150))
@@ -103,10 +103,12 @@ struct AssistanceView: View {
                         Text("В игре доступно 6 категорий и более 90 вопросов.")
                             .multilineTextAlignment(.center)
                             .font(.system(size: 24, weight: .heavy))
+                            .foregroundColor(.black)
                         
                         Text("Можно выбрать сразу несколько категорий для игры.")
                             .multilineTextAlignment(.center)
                             .font(.system(size: 24, weight: .heavy))
+                            .foregroundColor(.black)
                             .padding(.top, 50)
                         LazyVGrid(columns: columns) {
                             ForEach(categoryData, id: \.text) { category in
@@ -114,10 +116,22 @@ struct AssistanceView: View {
                                     text: Binding.constant(category.text),
                                     imageName: Binding.constant(category.imageName)
                                 )
+                                .disabled(true)
                             }
                         }
                     }
-                    .padding(.horizontal, 10)
+                    .padding(.all, 10)
+                }
+            }
+        }
+        .navigationTitle("Помощь")
+        .navigationBarBackButtonHidden(true)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button {
+                    presentationMode.wrappedValue.dismiss()
+                } label: {
+                    Image(systemName: "chevron.backward")
                 }
             }
         }
