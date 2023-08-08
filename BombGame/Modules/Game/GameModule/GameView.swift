@@ -2,9 +2,10 @@ import SwiftUI
 
 struct GameView: View {
     @ObservedObject var viewModel: GameViewModel
-    
+    @State var firstTouchButton = false
     @State var buttonName = "Запустить"
-    
+    @State var pauseGameView = false
+    @State var stopName = "Пауза"
     var body: some View {
         NavigationView {
             ZStack {
@@ -12,22 +13,27 @@ struct GameView: View {
                 VStack {
                     HStack(alignment: .center) {
                         Button {
-                            viewModel.goBack()
+                           //
                         } label: {
                             Image(systemName: Resources.Image.back)
                                 .foregroundColor(.black)
                         }
                         Spacer()
-                        Text("ИГРА")
+                        Text("\(viewModel.timerValue)")
                             .font(.system(size: 28, weight: .bold))
                             .foregroundColor(Resources.Colors.mainPurple)
                             .padding(.bottom)
                         Spacer()
                         Button {
-                            viewModel.setOnPause()
+                            viewModel.tpauseGame()
+                           
                         } label: {
-                            Image(Resources.Image.pause)
-                        }
+                            if viewModel.pauseGame {Image(systemName:"pause.circle") }else{ Image(systemName:"play.circle")
+                                
+                            }
+                        }.font(.largeTitle)
+                            .foregroundColor(.black)
+                            
                     }
                     .padding()
                     
@@ -43,8 +49,18 @@ struct GameView: View {
                     
                     Spacer()
                     
-                    ActionButton(text: $buttonName) {
-                        viewModel.startGame()
+                    ActionButton(text: (viewModel.pauseGame ? $stopName : $buttonName) ) {
+                        
+                        viewModel.tpauseGame()
+
+                        if firstTouchButton{
+                            viewModel.startGame()
+                            
+                        }else{
+                            viewModel.playBackgroundMusic()
+                        }
+                        firstTouchButton = true
+                                            
                     }
                 }
             }

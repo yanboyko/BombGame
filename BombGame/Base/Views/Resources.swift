@@ -29,7 +29,8 @@ enum Resources {
         static let circle = "circle"
 
         static let punishment = "punishment"
-        static let pause = "pauseButton"
+        static let pause = "pause.circle"
+        static let play = "play.cicrle"
         static let back = "chevron.left"
         
     }

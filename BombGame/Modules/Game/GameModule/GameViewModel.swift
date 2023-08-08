@@ -7,14 +7,19 @@ final class GameViewModel: ObservableObject {
     @Published var timerValue = 20
     var audioPlayer: AVAudioPlayer?
     @Published var isMusicPlaying = false
-    @Published var pauseGame = false
+    @Published var pauseGame = true
     
-    func onPauseGame(){
+    
+    
+    func tpauseGame() {
+        pauseGame.toggle()
         if pauseGame{
-            self.audioPlayer = nil
-            self.isMusicPlaying = false
+            startGame()
             
+        } else{
+            stopGame()
         }
+       
     }
     
     
@@ -34,7 +39,7 @@ final class GameViewModel: ObservableObject {
         }
     }
     
-    //------------------Таймер---------
+
     private var timer: Timer? // Таймер для обратного отсчета
     
     func startGame() {
@@ -48,7 +53,7 @@ final class GameViewModel: ObservableObject {
             if self.timerValue > 0 {
                 self.timerValue -= 1
                 self.audioPlayer?.play()
-                self.isMusicPlaying = true
+                self.isMusicPlaying.toggle()
             } else {
                 
                 self.audioPlayer = nil
@@ -56,7 +61,13 @@ final class GameViewModel: ObservableObject {
             }
         }
     }
-    
+    func stopGame() {
+        audioPlayer?.pause()
+        isMusicPlaying = false
+        timer?.invalidate()
+        timer = nil
+        isGameRunning = false
+    }
   
 }
-//-------------------------------------
+
