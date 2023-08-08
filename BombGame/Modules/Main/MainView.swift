@@ -42,28 +42,25 @@ struct MainView: View {
                         CircleButton(imageName: Resources.Image.helpImage, onTapAction: {
                             showHelpScreen = true
                         })
+                        NavigationLink(
+                            destination: CategoriesView(viewModel: CategoriesViewModel()),
+                            isActive: $showCategoriesScreen,
+                            label: { EmptyView() }
+                        )
+                        NavigationLink(
+                            destination: GameView(viewModel: GameViewModel()),
+                            isActive: $showGameScreen,
+                            label: { EmptyView() }
+                        )
+                        NavigationLink(
+                            destination: AssistanceView(viewModel: AssistanceViewModel()),
+                            isActive: $showHelpScreen,
+                            label: { EmptyView() }
+                        )
                     }
                 }
                 .padding()
             }
-            .background(
-            NavigationLink(
-                destination: CategoriesView(viewModel: CategoriesViewModel()),
-                isActive: $showCategoriesScreen,
-                label: { EmptyView() }
-            ))
-            .background(
-            NavigationLink(
-                destination: GameView(viewModel: GameViewModel()),
-                isActive: $showGameScreen,
-                label: { EmptyView() }
-            ))
-            .background(
-            NavigationLink(
-                destination: AssistanceView(viewModel: AssistanceViewModel()),
-                isActive: $showHelpScreen,
-                label: { EmptyView() }
-            ))
         }
     }
 }
