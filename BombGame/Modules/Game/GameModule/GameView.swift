@@ -1,13 +1,13 @@
 import SwiftUI
 
 struct GameView: View {
-
+    
     private enum Constants {
         static let bombPurple: Color = Color(red: 0.55, green: 0.24, blue: 0.85)
     }
-
+    
     @ObservedObject var viewModel: GameViewModel
-
+    @State private var quizQuestion = [QuizQuestion].self
     @State var buttonName = "Запустить"
     
     var body: some View {
@@ -17,19 +17,19 @@ struct GameView: View {
                 VStack {
                     HStack(alignment: .center) {
                         Button {
-                            viewModel.goBack()
+                           //
                         } label: {
                             Image(systemName: "chevron.left")
                                 .foregroundColor(.black)
                         }
                         Spacer()
-                        Text("ИГРА")
+                        Text("")
                             .font(.system(size: 28, weight: .bold))
                             .foregroundColor(Constants.bombPurple)
                             .padding(.bottom)
                         Spacer()
                         Button {
-                            viewModel.setOnPause()
+                            viewModel.onPauseGame()
                         } label: {
                             Image("pauseButton")
                         }
