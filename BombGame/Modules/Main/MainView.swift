@@ -25,8 +25,8 @@ struct MainView: View {
                         .multilineTextAlignment(.center)
                         .foregroundColor(Resources.Colors.mainPurple)
                     Image(Resources.Image.bombForMain)
-                        .resizable()
-                        .scaledToFit()
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 350)
                     VStack {
                         ActionButton(text: $startGame, onTapAction: {
                             showGameScreen = true
@@ -43,9 +43,8 @@ struct MainView: View {
                             showHelpScreen = true
                         })
                     }
-                    .padding(.horizontal)
                 }
-                .padding(.top, 50)
+                .padding()
             }
             .background(
             NavigationLink(

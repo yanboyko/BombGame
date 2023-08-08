@@ -15,13 +15,10 @@ struct CircleButton: View {
         Button {
             onTapAction()
         } label: {
-            ZStack {
-                Image(Resources.Image.circle)
                 Image(imageName)
-//                    .scaledToFit()
-//                    .clipShape(Circle())
+                    .scaledToFit()
+                    .clipShape(Circle())
 //                    .frame(width: 45, height: 45)
-            }
         }
         .background(Resources.Colors.mainPurple)
         .clipShape(Circle())
