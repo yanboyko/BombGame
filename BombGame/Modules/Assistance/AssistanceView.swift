@@ -56,7 +56,6 @@ struct AssistanceView: View {
     ]
     
     var body: some View {
-        NavigationView {
             ZStack {
                 BackgroundView()
                 ScrollView {
@@ -88,6 +87,7 @@ struct AssistanceView: View {
                         } else if ruleData.number == "7_rest" {
                             Text(ruleData.text)
                                 .font(.system(size: 18, weight: .heavy))
+                                .foregroundColor(.black)
                         } else {
                             topRulesView(numberString: ruleData.number, text: ruleData.text)
                         }
@@ -123,10 +123,13 @@ struct AssistanceView: View {
                     .padding(.all, 10)
                 }
             }
-        }
-        .navigationTitle("Помощь")
-        .navigationBarBackButtonHidden(true)
+        .navigationBarTitleDisplayMode(.inline)
         .toolbar {
+            ToolbarItem(placement: .principal) {
+                VStack {
+                    Text("Помощь").font(.title).bold()
+                }
+            }
             ToolbarItem(placement: .navigationBarLeading) {
                 Button {
                     presentationMode.wrappedValue.dismiss()
@@ -135,6 +138,8 @@ struct AssistanceView: View {
                 }
             }
         }
+        .foregroundColor(Resources.Colors.mainPurple)
+        .navigationBarBackButtonHidden(true)
     }
 }
 

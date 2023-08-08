@@ -7,7 +7,7 @@ struct GameView: View {
     @State var pauseGameView = false
     @State var stopName = "Пауза"
     var body: some View {
-        NavigationView {
+//        NavigationView {
             ZStack {
                 BackgroundView()
                 VStack {
@@ -64,7 +64,7 @@ struct GameView: View {
                     }
                 }
             }
-        }
+//        }
     }
 }
 

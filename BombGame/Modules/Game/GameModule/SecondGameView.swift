@@ -13,6 +13,6 @@ struct SecondGameView: View {
     }
 }
 
-#Preview {
-    SecondGameView()
-}
+//#Preview {
+//    SecondGameView()
+//}
