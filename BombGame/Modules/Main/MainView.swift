@@ -21,12 +21,14 @@ struct MainView: View {
     var settingsbutton = RiveViewModel(fileName: "settingsbutton", extension: "riv", stateMachineName: "StateMachine", autoPlay: false, artboardName: "MainButton")
     var helpbutton = RiveViewModel(fileName: "helpbutton", extension: "riv", stateMachineName: "StateMachine", autoPlay: false, artboardName: "MainButton")
     var bombanimation = RiveViewModel(fileName: "bombanimation", extension: "riv", stateMachineName: "StateMachine", autoPlay: false, artboardName: "BombArtboard")
+    var bombLabel = RiveViewModel(fileName: "bomblabel1", extension: "riv", stateMachineName: "StateMachine", autoPlay: false, artboardName: "MainArtboard")
     
     @State private var startGameButtonIsPressed = false
     @State private var resumeGameButtonIsPressed = false
     @State private var categoriesButtonIsPressed = false
     @State private var settingsbuttonIsPressed = false
     @State private var helpbuttonIsPressed = false
+    @State private var bombLabelIsPressed = false
     
     var body: some View {
         NavigationView {
@@ -46,20 +48,39 @@ struct MainView: View {
                                     .multilineTextAlignment(.center)
                                     .foregroundColor(Resources.Colors.mainPurple)
                                 Image(Resources.Image.bombForMain)
-                                    .frame(maxWidth: .infinity)
-                                    .frame(height: 300)
+                                    .resizable()
+                                    .scaledToFit()
                             }
-                            .padding(.vertical)
                         } else {
+                            VStack {
+                                bombLabel.view()
+                            }
+                            .frame(height: geometry.size.height / 10)
+                            .padding(.top)
+                            .shadow(color: .gray, radius: 5, x: 5, y: 5)
+                            .scaleEffect(bombLabelIsPressed ? 1.05 : 1.0)
+                            .pressEvents {
+                                bombLabel.reset()
+                                bombLabel.setInput("timeline", value: 1.0)
+                                withAnimation(.easeInOut(duration: 0.1)) {
+                                    bombLabelIsPressed = true
+                                }
+                            } onRelease: {
+                                bombLabel.setInput("timeline", value: 2.0)
+                                withAnimation {
+                                    bombLabelIsPressed = false
+                                }
+                            }
+                            
                             VStack {
                                 bombanimation.view()
                             }
+                            .padding(.leading, 64)
                             .onAppear {
                                 bombanimation.setInput("timeline", value: 1.0)
-                                print("geometry", geometry.size)
                             }
                         }
-
+                        
                         if !animationViewModel.addAnimation {
                             VStack {
                                 ActionButton(text: $startGame, onTapAction: {
@@ -70,8 +91,9 @@ struct MainView: View {
                                     showCategoriesScreen = true }
                                 )
                             }
+                            .frame(height: geometry.size.height / 3)
                         } else {
-                            VStack {
+                            VStack(spacing: 16) {
                                 startGameButton.view()
                                     .shadow(color: .black, radius: 5, x: 5, y: 10)
                                     .scaleEffect(startGameButtonIsPressed ? 1.05 : 1.0)
@@ -119,7 +141,6 @@ struct MainView: View {
                                 
                             }
                             .frame(height: geometry.size.height / 3)
-                            
                         }
                         
                         if !animationViewModel.addAnimation {
@@ -132,9 +153,12 @@ struct MainView: View {
                                     showHelpScreen = true
                                 })
                             }
+                            .frame(height: geometry.size.height / 10)
+                            .padding(.horizontal)
                         } else {
                             HStack {
                                 settingsbutton.view()
+                                    .frame(width: 100)
                                     .shadow(color: .black, radius: 5, x: 5, y: 10)
                                     .scaleEffect(settingsbuttonIsPressed ? 1.05 : 1.0)
                                     .pressEvents {
@@ -147,12 +171,14 @@ struct MainView: View {
                                         withAnimation {
                                             settingsbuttonIsPressed = false
                                         }
-                                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
                                             showSettingsScreen = true
                                         }
                                     }
+                                
                                 Spacer()
                                 helpbutton.view()
+                                    .frame(width: 100)
                                     .shadow(color: .black, radius: 5, x: 5, y: 10)
                                     .scaleEffect(helpbuttonIsPressed ? 1.05 : 1.0)
                                     .pressEvents {
@@ -167,10 +193,10 @@ struct MainView: View {
                                         }
                                     }
                             }
-                            .frame(height: geometry.size.height / 10)
+                            .frame(height: geometry.size.height / 15)
+                          //  .padding(.horizontal)
                         }
                     }
-                  //  .padding(.horizontal)
                 }
             }
             .background(

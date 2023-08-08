@@ -35,6 +35,8 @@
 		A120138D2A825F0D003B394C /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A120138C2A825F0D003B394C /* SettingsViewModel.swift */; };
 		A120138F2A8263D6003B394C /* AnimationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A120138E2A8263D6003B394C /* AnimationViewModel.swift */; };
 		A12013932A826869003B394C /* bombanimation.riv in Resources */ = {isa = PBXBuildFile; fileRef = A12013922A826869003B394C /* bombanimation.riv */; };
+		A12013962A82D544003B394C /* bomblabel.riv in Resources */ = {isa = PBXBuildFile; fileRef = A12013952A82D544003B394C /* bomblabel.riv */; };
+		A12013982A82D7B9003B394C /* bomblabel1.riv in Resources */ = {isa = PBXBuildFile; fileRef = A12013972A82D7B9003B394C /* bomblabel1.riv */; };
 		A1553F0E2A8021D500AD9CFC /* RiveRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = A1553F0D2A8021D500AD9CFC /* RiveRuntime */; };
 		AB3A48942A81430B004D5B6F /* QuizQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3A48932A81430B004D5B6F /* QuizQuestion.swift */; };
 		AB3A48962A814585004D5B6F /* Punishment.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3A48952A814585004D5B6F /* Punishment.swift */; };
@@ -72,6 +74,8 @@
 		A120138C2A825F0D003B394C /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		A120138E2A8263D6003B394C /* AnimationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationViewModel.swift; sourceTree = "<group>"; };
 		A12013922A826869003B394C /* bombanimation.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = bombanimation.riv; sourceTree = "<group>"; };
+		A12013952A82D544003B394C /* bomblabel.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = bomblabel.riv; sourceTree = "<group>"; };
+		A12013972A82D7B9003B394C /* bomblabel1.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = bomblabel1.riv; sourceTree = "<group>"; };
 		AB3A48932A81430B004D5B6F /* QuizQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizQuestion.swift; sourceTree = "<group>"; };
 		AB3A48952A814585004D5B6F /* Punishment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Punishment.swift; sourceTree = "<group>"; };
 		AB3A489A2A8148C6004D5B6F /* PunishmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PunishmentView.swift; sourceTree = "<group>"; };
@@ -247,6 +251,8 @@
 				A12013832A82586B003B394C /* settingsbutton.riv */,
 				A12013852A825871003B394C /* helpbutton.riv */,
 				A12013922A826869003B394C /* bombanimation.riv */,
+				A12013952A82D544003B394C /* bomblabel.riv */,
+				A12013972A82D7B9003B394C /* bomblabel1.riv */,
 			);
 			path = Rive;
 			sourceTree = "<group>";
@@ -355,8 +361,10 @@
 			files = (
 				A12013932A826869003B394C /* bombanimation.riv in Resources */,
 				A12013822A82585F003B394C /* categoriesbutton.riv in Resources */,
+				A12013982A82D7B9003B394C /* bomblabel1.riv in Resources */,
 				A12013802A825856003B394C /* resumebutton.riv in Resources */,
 				2C9444F82A7FCB4E00C14CAA /* Preview Assets.xcassets in Resources */,
+				A12013962A82D544003B394C /* bomblabel.riv in Resources */,
 				A12013862A825871003B394C /* helpbutton.riv in Resources */,
 				2C9444F52A7FCB4E00C14CAA /* Assets.xcassets in Resources */,
 				A12013842A82586B003B394C /* settingsbutton.riv in Resources */,
@@ -523,7 +531,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"BombGame/Preview Content\"";
-				DEVELOPMENT_TEAM = 3LUM3CH8UT;
+				DEVELOPMENT_TEAM = Z262BFFWGC;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "Bomb Game";
@@ -557,7 +565,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"BombGame/Preview Content\"";
-				DEVELOPMENT_TEAM = 3LUM3CH8UT;
+				DEVELOPMENT_TEAM = Z262BFFWGC;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "Bomb Game";
