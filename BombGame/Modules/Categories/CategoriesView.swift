@@ -29,10 +29,13 @@ struct CategoriesView: View {
             }
             .padding(16)
         }
-        .navigationTitle("Категории")
-        .foregroundColor(Resources.Colors.mainPurple)
-        .navigationBarBackButtonHidden(true)
+        .navigationBarTitleDisplayMode(.inline)
         .toolbar {
+                    ToolbarItem(placement: .principal) {
+                        VStack {
+                            Text("Категории").font(.title).bold()
+                        }
+                    }
             ToolbarItem(placement: .navigationBarLeading) {
                 Button {
                     presentationMode.wrappedValue.dismiss()
@@ -40,7 +43,9 @@ struct CategoriesView: View {
                     Image(systemName: "chevron.backward")
                 }
             }
-        }
+                }
+        .foregroundColor(Resources.Colors.mainPurple)
+        .navigationBarBackButtonHidden(true)
     }
 }
 
