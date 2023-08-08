@@ -10,8 +10,62 @@ import SwiftUI
 struct PunishmentView: View {
     @ObservedObject var viewModel: PunishmentViewModel
 
+    @State var startAgainButtonName = "Начать \n заново"
+    @State var anotherQuestionButtonName = "Другоe \n задание"
+
     var body: some View {
-        Text("Hello, World!")
+        ZStack {
+            BackgroundView()
+            VStack {
+                HStack(alignment: .center) {
+                    Button {
+                        viewModel.goBack()
+                    } label: {
+                        Image(systemName: Resources.Image.back)
+                            .foregroundColor(.black)
+                    }
+                    Spacer()
+                    Text("ИГРА")
+                        .font(.system(size: 28, weight: .bold))
+                        .foregroundColor(Resources.Colors.mainPurple)
+                        .padding(.horizontal)
+                    Spacer()
+                    Button {
+                        viewModel.setOnPause()
+                    } label: {
+                        Image(Resources.Image.pause)
+                    }
+                }
+                .padding(.horizontal)
+
+                Text("Проигравший выполняет задание")
+                    .font(.system(size: 28, weight: .bold))
+                    .foregroundColor(.black)
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal)
+
+                Image(Resources.Image.punishment)
+
+                Text(viewModel.punishment.text)
+                    .font(.system(size: 24, weight: .bold))
+                    .lineLimit(3)
+                    .frame(maxHeight: .infinity)
+                    .foregroundColor(Resources.Colors.mainPurple)
+                    .multilineTextAlignment(.center)
+                    .padding()
+
+                ActionButton(text: $anotherQuestionButtonName) {
+                    withAnimation {
+                        viewModel.getAnotherQuestion()
+                    }
+                }
+                .lineLimit(2)
+
+                ActionButton(text: $startAgainButtonName) {
+                    viewModel.restartGame()
+                }
+            }
+        }
     }
 }
 

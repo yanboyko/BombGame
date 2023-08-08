@@ -2,6 +2,7 @@ import SwiftUI
 
 struct CategoriesView: View {
     @ObservedObject var viewModel: CategoriesViewModel
+    @Environment(\.presentationMode) var presentationMode
     
     let columns = [
         GridItem(.adaptive(minimum: 150))
@@ -27,6 +28,18 @@ struct CategoriesView: View {
                 }
             }
             .padding(16)
+        }
+        .navigationTitle("Категории")
+        .foregroundColor(Resources.Colors.mainPurple)
+        .navigationBarBackButtonHidden(true)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button {
+                    presentationMode.wrappedValue.dismiss()
+                } label: {
+                    Image(systemName: "chevron.backward")
+                }
+            }
         }
     }
 }
