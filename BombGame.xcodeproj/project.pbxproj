@@ -44,6 +44,7 @@
 		AB3A489D2A8148E7004D5B6F /* PunishmentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3A489C2A8148E7004D5B6F /* PunishmentViewModel.swift */; };
 		FAAD891D2A82688A00F73927 /* SecondGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAD891C2A82688A00F73927 /* SecondGameView.swift */; };
 		FAAD891F2A82691000F73927 /* Audio1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FAAD891E2A82690F00F73927 /* Audio1.mp3 */; };
+		FAC9AB0C2A83C2E0003E38D3 /* explousion.wav in Resources */ = {isa = PBXBuildFile; fileRef = FAC9AB0B2A83C2E0003E38D3 /* explousion.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -84,6 +85,7 @@
 		AB3A489C2A8148E7004D5B6F /* PunishmentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PunishmentViewModel.swift; sourceTree = "<group>"; };
 		FAAD891C2A82688A00F73927 /* SecondGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondGameView.swift; sourceTree = "<group>"; };
 		FAAD891E2A82690F00F73927 /* Audio1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Audio1.mp3; sourceTree = "<group>"; };
+		FAC9AB0B2A83C2E0003E38D3 /* explousion.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = explousion.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -304,6 +306,7 @@
 		FAAD89202A82691200F73927 /* Audio */ = {
 			isa = PBXGroup;
 			children = (
+				FAC9AB0B2A83C2E0003E38D3 /* explousion.wav */,
 				FAAD891E2A82690F00F73927 /* Audio1.mp3 */,
 			);
 			path = Audio;
@@ -382,6 +385,7 @@
 				A12013962A82D544003B394C /* bomblabel.riv in Resources */,
 				A12013862A825871003B394C /* helpbutton.riv in Resources */,
 				2C9444F52A7FCB4E00C14CAA /* Assets.xcassets in Resources */,
+				FAC9AB0C2A83C2E0003E38D3 /* explousion.wav in Resources */,
 				A12013842A82586B003B394C /* settingsbutton.riv in Resources */,
 				A120137E2A82584C003B394C /* startgamebutton.riv in Resources */,
 			);

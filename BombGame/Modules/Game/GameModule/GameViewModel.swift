@@ -2,14 +2,32 @@
 
 import Foundation
 import AVFoundation
-final class GameViewModel: ObservableObject {
+
+final class GameViewModel: NSObject, ObservableObject {
     @Published var isGameRunning = false
-    @Published var timerValue = 20
+    @Published var timerValue = 0
     var audioPlayer: AVAudioPlayer?
     @Published var isMusicPlaying = false
     @Published var pauseGame = true
-    
-    
+    func randomQuestion() -> QuizQuestion? {
+        return QuizQuestion.quizData.randomElement()
+    }
+    func playEndingMusic() {
+        guard let musicUrl = Bundle.main.url(forResource: "explousion", withExtension: "wav") else {
+            print("Failed to find the ending music file.")
+            return
+        }
+               
+        do {
+                audioPlayer = try AVAudioPlayer(contentsOf: musicUrl)
+                audioPlayer?.delegate = self
+                audioPlayer?.numberOfLoops = 1 // loop infinitely
+                audioPlayer?.play()
+                isMusicPlaying = true
+            } catch {
+                print("Failed to play ending music: \(error.localizedDescription)")
+            }
+        }
     
     func tpauseGame() {
         pauseGame.toggle()
@@ -49,15 +67,14 @@ final class GameViewModel: ObservableObject {
         
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
             guard let self = self else { return }
-            
             if self.timerValue > 0 {
                 self.timerValue -= 1
                 self.audioPlayer?.play()
                 self.isMusicPlaying.toggle()
             } else {
+                self.audioPlayer?.stop()
+                       self.isMusicPlaying = false
                 
-                self.audioPlayer = nil
-                self.isMusicPlaying = false
             }
         }
     }
@@ -70,4 +87,8 @@ final class GameViewModel: ObservableObject {
     }
   
 }
-
+extension GameViewModel: AVAudioPlayerDelegate {
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        playBackgroundMusic()
+    }
+}

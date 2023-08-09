@@ -2,41 +2,37 @@ import SwiftUI
 
 struct GameView: View {
     @ObservedObject var viewModel: GameViewModel
-    @State var firstTouchButton = false
+    @State var isButtonVisible = true
     @State var buttonName = "Запустить"
     @State var pauseGameView = false
     @State var stopName = "Пауза"
+    @State private var currentQuestion: QuizQuestion?
     var body: some View {
-//        NavigationView {
-            ZStack {
-                BackgroundView()
-                VStack {
-                    HStack(alignment: .center) {
-                        Button {
-                           //
-                        } label: {
-                            Image(systemName: Resources.Image.back)
-                                .foregroundColor(.black)
-                        }
-                        Spacer()
-                        Text("\(viewModel.timerValue)")
-                            .font(.system(size: 28, weight: .bold))
-                            .foregroundColor(Resources.Colors.mainPurple)
-                            .padding(.bottom)
-                        Spacer()
-                        Button {
-                            viewModel.tpauseGame()
-                           
-                        } label: {
-                            if viewModel.pauseGame {Image(systemName:"pause.circle") }else{ Image(systemName:"play.circle")
-                                
-                            }
-                        }.font(.largeTitle)
+        //        NavigationView {
+        ZStack {
+            BackgroundView()
+            VStack {
+                HStack(alignment: .center) {
+                    Button {
+                        //
+                    } label: {
+                        Image(systemName: Resources.Image.back)
                             .foregroundColor(.black)
-                            
                     }
-                    .padding()
+                    Spacer()
+                    Button {
+                        viewModel.tpauseGame()
+                        
+                    } label: {
+                        if viewModel.pauseGame {Image(systemName:"pause.circle") }else{ Image(systemName:"play.circle")
+                            
+                        }
+                    }.font(.largeTitle)
+                        .foregroundColor(.black)
                     
+                }
+                .padding()
+                if isButtonVisible{
                     Text("Нажмите")
                         .font(.system(size: 28, weight: .bold))
                         .foregroundColor(Resources.Colors.mainPurple)
@@ -44,28 +40,51 @@ struct GameView: View {
                         .multilineTextAlignment(.center)
                         .font(.system(size: 28, weight: .bold))
                         .foregroundColor(Resources.Colors.mainPurple)
-                    Image(Resources.Image.bomb)
-                        .padding(.leading)
-                    
-                    Spacer()
-                    
-                    ActionButton(text: (viewModel.pauseGame ? $stopName : $buttonName) ) {
+                }else{
+                    if viewModel.pauseGame{
+                        Text(currentQuestion?.question ?? "")
+                            .multilineTextAlignment(.center)
+                            .font(.system(size: 28, weight: .bold))
+                            .foregroundColor(Resources.Colors.mainPurple)
                         
-                        viewModel.tpauseGame()
+                    }else{
+                        Text(stopName)
+                            .multilineTextAlignment(.center)
+                            .font(.system(size: 28, weight: .bold))
+                            .foregroundColor(Resources.Colors.mainPurple)
 
-                        if firstTouchButton{
-                            viewModel.startGame()
-                            
-                        }else{
-                            viewModel.playBackgroundMusic()
-                        }
-                        firstTouchButton = true
-                                            
                     }
                 }
+                Image(Resources.Image.bomb)
+                    .padding(.leading)
+                
+                Spacer()
+                if isButtonVisible{
+                    ActionButton(text: $buttonName ) {
+                        viewModel.timerValue = 20
+                        viewModel.playBackgroundMusic()
+                        currentQuestion = viewModel.randomQuestion()
+                        isButtonVisible = false
+                        
+                        viewModel.startGame()
+                        
+                        
+                    }
+                    
+                    
+                    
+                    
+                }
+                
+                
+                
+                
+                
             }
-//        }
+        }
+        //        }
     }
+   
 }
 
 struct GameView_Previews: PreviewProvider {
