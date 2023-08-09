@@ -10,6 +10,7 @@ final class GameViewModel: NSObject, ObservableObject {
     @Published var isMusicPlaying = false
     @Published var isMusicPlayingw = false
     @Published var pauseGame = true
+    @Published var timerEnded = false
     func randomQuestion() -> QuizQuestion? {
         return QuizQuestion.quizData.randomElement()
     }
@@ -78,6 +79,7 @@ final class GameViewModel: NSObject, ObservableObject {
                 if !self.isMusicPlayingw {
                 self.playEndingMusic()
                 self.isMusicPlayingw = true
+                    self.timerEnded = true
                 }
                 
             }
