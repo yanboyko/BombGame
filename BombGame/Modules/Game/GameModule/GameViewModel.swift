@@ -8,22 +8,22 @@ final class GameViewModel: NSObject, ObservableObject {
     @Published var timerValue = 0
     var audioPlayer: AVAudioPlayer?
     @Published var isMusicPlaying = false
+    @Published var isMusicPlayingw = false
     @Published var pauseGame = true
+    @Published var timerEnded = false
     func randomQuestion() -> QuizQuestion? {
         return QuizQuestion.quizData.randomElement()
     }
     func playEndingMusic() {
-        guard let musicUrl = Bundle.main.url(forResource: "explousion", withExtension: "wav") else {
+        guard let musicUrlw = Bundle.main.url(forResource: "explousion", withExtension: "wav") else {
             print("Failed to find the ending music file.")
             return
         }
                
         do {
-                audioPlayer = try AVAudioPlayer(contentsOf: musicUrl)
-                audioPlayer?.delegate = self
-                audioPlayer?.numberOfLoops = 1 // loop infinitely
+                audioPlayer = try AVAudioPlayer(contentsOf: musicUrlw)
                 audioPlayer?.play()
-                isMusicPlaying = true
+                isMusicPlayingw = true
             } catch {
                 print("Failed to play ending music: \(error.localizedDescription)")
             }
@@ -71,9 +71,16 @@ final class GameViewModel: NSObject, ObservableObject {
                 self.timerValue -= 1
                 self.audioPlayer?.play()
                 self.isMusicPlaying.toggle()
+                isMusicPlayingw = false
+                
             } else {
                 self.audioPlayer?.stop()
-                       self.isMusicPlaying = false
+                self.isMusicPlaying = false
+                if !self.isMusicPlayingw {
+                self.playEndingMusic()
+                self.isMusicPlayingw = true
+                    self.timerEnded = true
+                }
                 
             }
         }
@@ -87,8 +94,4 @@ final class GameViewModel: NSObject, ObservableObject {
     }
   
 }
-extension GameViewModel: AVAudioPlayerDelegate {
-    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
-        playBackgroundMusic()
-    }
-}
+
