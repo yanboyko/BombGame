@@ -16,7 +16,7 @@ final class GameViewModel: ObservableObject {
         return QuizQuestion.quizData.randomElement()
     }
     
-    func playEndingMusic() {
+    func explousionSound() {
         guard let musicUrlw = Bundle.main.url(forResource: "explousion", withExtension: "wav") else {
             print("Failed to find the ending music file.")
             return
@@ -79,7 +79,7 @@ final class GameViewModel: ObservableObject {
                 self.audioPlayer?.stop()
                 self.isMusicPlaying = false
                 if !self.isMusicPlayingw {
-                    self.playEndingMusic()
+                    self.explousionSound()
                     self.isMusicPlayingw = true
                     self.timerEnded = true
                 }

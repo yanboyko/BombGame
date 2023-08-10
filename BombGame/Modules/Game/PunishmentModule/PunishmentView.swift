@@ -9,9 +9,11 @@ import SwiftUI
 
 struct PunishmentView: View {
     @ObservedObject var viewModel: PunishmentViewModel
-
+   
     @State var startAgainButtonName = "Начать \n заново"
     @State var anotherQuestionButtonName = "Другоe \n задание"
+    
+    @Environment(\.presentationMode) var presentationMode
 
     var body: some View {
         ZStack {
@@ -19,7 +21,8 @@ struct PunishmentView: View {
             VStack {
                 HStack(alignment: .center) {
                     Button {
-                        viewModel.goBack()
+                        presentationMode.wrappedValue.dismiss()
+
                     } label: {
                         Image(systemName: Resources.Image.back)
                             .foregroundColor(.black)

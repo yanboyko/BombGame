@@ -3,12 +3,15 @@ import SwiftUI
 struct GameView: View {
     
     @ObservedObject var viewModel: GameViewModel
-    
+  
     @State var startButtonName = Resources.Text.startButtonName
     @State var stopButtonName = Resources.Text.stopButtonName
     @State var pauseGameView = false
     @State var startStopButtonVisible = true
+    @State var showGameScreen = false
     @State private var currentQuestion: QuizQuestion?
+    
+    @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
         ZStack {
@@ -21,26 +24,30 @@ struct GameView: View {
                     
                     HStack(alignment: .center) {
                         Button {
-                            
+                            presentationMode.wrappedValue.dismiss()
+                            viewModel.stopGame()
+                           
                         } label: {
                             Image(systemName: Resources.Image.back)
                                 .foregroundColor(.black)
                         }
                         
                         Spacer()
-                        
-                        Button {
-                            viewModel.tpauseGame()
-                        } label: {
-                            if viewModel.pauseGame {
-                                Image(systemName:"pause.circle")
-                            } else {
-                                Image(systemName:"play.circle")
+                        if !startStopButtonVisible {
+                            Button {
+                                viewModel.tpauseGame()
+                            } label: {
+                                if viewModel.pauseGame {
+                                    Image(systemName:"pause.circle")
+                                } else {
+                                    Image(systemName:"play.circle")
+                                }
                             }
+                            .font(.largeTitle)
+                            .foregroundColor(.black)
+                            
                         }
-                        .font(.largeTitle)
-                        .foregroundColor(.black)
-                        
+                       
                     }
                     .padding()
                     
@@ -83,6 +90,7 @@ struct GameView: View {
                 }
             }
         }
+        .navigationBarHidden(true)
     }
 }
 
