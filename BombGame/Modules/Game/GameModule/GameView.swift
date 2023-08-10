@@ -25,7 +25,8 @@ struct GameView: View {
                     HStack(alignment: .center) {
                         Button {
                             presentationMode.wrappedValue.dismiss()
-                            viewModel.tpauseGame()
+                            viewModel.stopGame()
+                           
                         } label: {
                             Image(systemName: Resources.Image.back)
                                 .foregroundColor(.black)

@@ -93,7 +93,7 @@ struct MainView: View {
                                 })
                                 
                                 ActionButton(text: $proceedGame, onTapAction: {
-                               
+                                   
                                     
                                 })
                                 
