@@ -1,19 +1,27 @@
 import SwiftUI
 
+struct Category {
+    var text: String
+    var imageName: String
+}
+
 struct CategoriesView: View {
     @ObservedObject var viewModel: CategoriesViewModel
     @Environment(\.presentationMode) var presentationMode
     
+    var questionBox = QuestionsBox()
+    
     let columns = [
         GridItem(.adaptive(minimum: 150))
     ]
-    var categoryData: [(text: String, imageName: String)] = [
-        ("О Разном", "category1"),
-        ("Спорт и Хобби", "category2"),
-        ("Про Жизнь", "category3"),
-        ("Знаменитости", "category4"),
-        ("Искусство и Кино", "category5"),
-        ("Природа", "category6")
+    
+    var categoryData: [Category] = [
+        Category(text: "О Разном", imageName: "category1"),
+        Category(text: "Спорт и Хобби", imageName: "category2"),
+        Category(text: "Про Жизнь", imageName: "category3"),
+        Category(text: "Знаменитости", imageName: "category4"),
+        Category(text: "Искусство и Кино", imageName: "category5"),
+        Category(text: "Природа", imageName: "category6")
     ]
     
     var body: some View {
@@ -23,7 +31,10 @@ struct CategoriesView: View {
                 ForEach(categoryData, id: \.text) { category in
                     CategoryButton(
                         text: Binding.constant(category.text),
-                        imageName: Binding.constant(category.imageName)
+                        imageName: Binding.constant(category.imageName),
+                        onTapAction: {
+                            viewModel.categoryTapped(category: category)
+                        }
                     )
                 }
             }

@@ -25,6 +25,7 @@
 		87CF9F832A8152550080039E /* CircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87CF9F822A8152550080039E /* CircleButton.swift */; };
 		87CF9F852A81525F0080039E /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87CF9F842A81525F0080039E /* BackgroundView.swift */; };
 		87CF9F872A8152710080039E /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87CF9F862A8152710080039E /* Resources.swift */; };
+		87D49B712A8543970030E4D6 /* QuestionBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87D49B702A8543970030E4D6 /* QuestionBox.swift */; };
 		A120137E2A82584C003B394C /* startgamebutton.riv in Resources */ = {isa = PBXBuildFile; fileRef = A120137D2A82584C003B394C /* startgamebutton.riv */; };
 		A12013802A825856003B394C /* resumebutton.riv in Resources */ = {isa = PBXBuildFile; fileRef = A120137F2A825856003B394C /* resumebutton.riv */; };
 		A12013822A82585F003B394C /* categoriesbutton.riv in Resources */ = {isa = PBXBuildFile; fileRef = A12013812A82585F003B394C /* categoriesbutton.riv */; };
@@ -67,6 +68,7 @@
 		87CF9F822A8152550080039E /* CircleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleButton.swift; sourceTree = "<group>"; };
 		87CF9F842A81525F0080039E /* BackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
 		87CF9F862A8152710080039E /* Resources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
+		87D49B702A8543970030E4D6 /* QuestionBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionBox.swift; sourceTree = "<group>"; };
 		A120137D2A82584C003B394C /* startgamebutton.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = startgamebutton.riv; sourceTree = "<group>"; };
 		A120137F2A825856003B394C /* resumebutton.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = resumebutton.riv; sourceTree = "<group>"; };
 		A12013812A82585F003B394C /* categoriesbutton.riv */ = {isa = PBXFileReference; lastKnownFileType = file; path = categoriesbutton.riv; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 			children = (
 				2CB633EF2A80144100CEF402 /* CategoriesView.swift */,
 				2CB633F12A80145F00CEF402 /* CategoriesViewModel.swift */,
+				87D49B702A8543970030E4D6 /* QuestionBox.swift */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -423,6 +426,7 @@
 				2CB633F22A80145F00CEF402 /* CategoriesViewModel.swift in Sources */,
 				AB3A489D2A8148E7004D5B6F /* PunishmentViewModel.swift in Sources */,
 				A120138D2A825F0D003B394C /* SettingsViewModel.swift in Sources */,
+				87D49B712A8543970030E4D6 /* QuestionBox.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
