@@ -7,9 +7,9 @@ struct MainView: View {
     @EnvironmentObject var animationViewModel: AnimationViewModel
     @ObservedObject var gameViewModel: GameViewModel
     
-    @State private var startGame = "Старт игры"
-    @State private var proceedGame = "Продолжить"
-    @State private var categories = "Категории"
+    @State private var startGame = Resources.Text.startGame
+    @State private var proceedGame = Resources.Text.proceedGame
+    @State private var categories = Resources.Text.categories
     
     @State private var showCategoriesScreen = false
     @State private var showGameScreen = false
@@ -120,6 +120,9 @@ struct MainView: View {
                                         withAnimation {
                                             startGameButtonIsPressed = false
                                         }
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                                            showGameScreen = true
+                                        }
                                     }
                                 
                                 resumeGameButton.view()
@@ -134,6 +137,10 @@ struct MainView: View {
                                         resumeGameButton.setInput("timeline", value: 2.0)
                                         withAnimation {
                                             resumeGameButtonIsPressed = false
+                                        }
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                                            // Условия для кнопки продолжить
+                                            showGameScreen = true
                                         }
                                     }
                                 
@@ -150,8 +157,10 @@ struct MainView: View {
                                         withAnimation {
                                             categoriesButtonIsPressed = false
                                         }
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                                            showCategoriesScreen = true
+                                        }
                                     }
-                                
                             }
                             .frame(height: geometry.size.height / 3)
                         }
@@ -204,10 +213,12 @@ struct MainView: View {
                                         withAnimation {
                                             helpbuttonIsPressed = false
                                         }
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                                            showHelpScreen = true
+                                        }
                                     }
                             }
                             .frame(height: geometry.size.height / 15)
-                          //  .padding(.horizontal)
                         }
                     }
                 }

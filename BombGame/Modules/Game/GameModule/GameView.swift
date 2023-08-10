@@ -1,26 +1,24 @@
 import SwiftUI
 
 struct GameView: View {
+    
     @ObservedObject var viewModel: GameViewModel
-    @State var isButtonVisible = true
-    @State var buttonName = "Запустить"
+    
+    @State var startButtonName = Resources.Text.startButtonName
+    @State var stopButtonName = Resources.Text.stopButtonName
     @State var pauseGameView = false
-    @State var stopName = "Пауза"
+    @State var startStopButtonVisible = true
     @State private var currentQuestion: QuizQuestion?
+    
     var body: some View {
-        //        NavigationView {
         ZStack {
-            
-            
-            
             BackgroundView()
             
-            if viewModel.isMusicPlayingw{
+            if viewModel.timerEnded {
                 PunishmentView(viewModel: PunishmentViewModel())
-            }else{
-                
-                
+            } else {
                 VStack {
+                    
                     HStack(alignment: .center) {
                         Button {
                             
@@ -28,20 +26,25 @@ struct GameView: View {
                             Image(systemName: Resources.Image.back)
                                 .foregroundColor(.black)
                         }
+                        
                         Spacer()
+                        
                         Button {
                             viewModel.tpauseGame()
-                            
                         } label: {
-                            if viewModel.pauseGame {Image(systemName:"pause.circle") }else{ Image(systemName:"play.circle")
-                                
+                            if viewModel.pauseGame {
+                                Image(systemName:"pause.circle")
+                            } else {
+                                Image(systemName:"play.circle")
                             }
-                        }.font(.largeTitle)
-                            .foregroundColor(.black)
+                        }
+                        .font(.largeTitle)
+                        .foregroundColor(.black)
                         
                     }
                     .padding()
-                    if isButtonVisible{
+                    
+                    if startStopButtonVisible {
                         Text("Нажмите")
                             .font(.system(size: 28, weight: .bold))
                             .foregroundColor(Resources.Colors.mainPurple)
@@ -49,30 +52,31 @@ struct GameView: View {
                             .multilineTextAlignment(.center)
                             .font(.system(size: 28, weight: .bold))
                             .foregroundColor(Resources.Colors.mainPurple)
-                    }else{
-                        if viewModel.pauseGame{
+                    } else {
+                        if viewModel.pauseGame {
                             Text(currentQuestion?.question ?? "")
                                 .multilineTextAlignment(.center)
                                 .font(.system(size: 28, weight: .bold))
                                 .foregroundColor(Resources.Colors.mainPurple)
-                            
-                        }else{
-                            Text(stopName)
+                        } else {
+                            Text(stopButtonName)
                                 .multilineTextAlignment(.center)
                                 .font(.system(size: 28, weight: .bold))
                                 .foregroundColor(Resources.Colors.mainPurple)
                         }
                     }
+                    
                     Image(Resources.Image.bomb)
                         .padding(.leading)
                     
                     Spacer()
-                    if isButtonVisible{
-                        ActionButton(text: $buttonName ) {
+                    
+                    if startStopButtonVisible {
+                        ActionButton(text: $startButtonName) {
                             viewModel.timerValue = 20
                             viewModel.playBackgroundMusic()
                             currentQuestion = viewModel.randomQuestion()
-                            isButtonVisible = false
+                            startStopButtonVisible = false
                             viewModel.startGame()
                         }
                     }
@@ -80,7 +84,6 @@ struct GameView: View {
             }
         }
     }
-    
 }
 
 struct GameView_Previews: PreviewProvider {

@@ -1,21 +1,21 @@
-
-
 import Foundation
 import AVFoundation
 
-final class GameViewModel:ObservableObject {
+final class GameViewModel: ObservableObject {
+    
     @Published var isGameRunning = false
     @Published var timerValue = 0
-    var audioPlayer: AVAudioPlayer?
     @Published var isMusicPlaying = false
     @Published var isMusicPlayingw = false
     @Published var pauseGame = true
     @Published var timerEnded = false
-    @Published var musicOff = true
-    @Published var contBut = true
+    
+    var audioPlayer: AVAudioPlayer?
+    
     func randomQuestion() -> QuizQuestion? {
         return QuizQuestion.quizData.randomElement()
     }
+    
     func playEndingMusic() {
         guard let musicUrlw = Bundle.main.url(forResource: "explousion", withExtension: "wav") else {
             print("Failed to find the ending music file.")
