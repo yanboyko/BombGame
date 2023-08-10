@@ -7,7 +7,7 @@ final class CategoriesViewModel: ObservableObject {
 
     func categoryTapped(category: Category) {
         if let categoryName = QuestionsBox.CategoryName(rawValue: category.text) {
-            if let existingIndex = selectedQuestions.firstIndex(where: { $0.category == categoryName }) {
+            if selectedQuestions.firstIndex(where: { $0.category == categoryName }) != nil {
                 // Deselect category
                 selectedQuestions.removeAll { $0.category == categoryName }
             } else {
@@ -17,6 +17,6 @@ final class CategoriesViewModel: ObservableObject {
             }
         }
         print(selectedQuestions)
-        print(selectedQuestions.randomElement()?.text)
+        print(selectedQuestions.randomElement()?.text ?? "тут должен был быть случайный вопрос")
     }
 }

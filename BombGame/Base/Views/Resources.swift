@@ -37,7 +37,12 @@ enum Resources {
     
     enum Text {
         static let bomb = "БОМБА"
-        static let mainScreenTitle = "Игра для компании"        
+        static let mainScreenTitle = "Игра для компании"
+        static let startGame = "Старт игры"
+        static let proceedGame = "Продолжить"
+        static let categories = "Категории"
+        static let startButtonName = "Запустить"
+        static let stopButtonName = "Пауза"
     }
     
     enum Fonts {

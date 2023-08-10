@@ -1,33 +1,35 @@
-    
-
 import Foundation
 import AVFoundation
 
-final class GameViewModel: NSObject, ObservableObject {
+final class GameViewModel: ObservableObject {
+    
     @Published var isGameRunning = false
     @Published var timerValue = 0
-    var audioPlayer: AVAudioPlayer?
     @Published var isMusicPlaying = false
     @Published var isMusicPlayingw = false
     @Published var pauseGame = true
     @Published var timerEnded = false
+    
+    var audioPlayer: AVAudioPlayer?
+    
     func randomQuestion() -> QuizQuestion? {
         return QuizQuestion.quizData.randomElement()
     }
+    
     func playEndingMusic() {
         guard let musicUrlw = Bundle.main.url(forResource: "explousion", withExtension: "wav") else {
             print("Failed to find the ending music file.")
             return
         }
-               
+        
         do {
-                audioPlayer = try AVAudioPlayer(contentsOf: musicUrlw)
-                audioPlayer?.play()
-                isMusicPlayingw = true
-            } catch {
-                print("Failed to play ending music: \(error.localizedDescription)")
-            }
+            audioPlayer = try AVAudioPlayer(contentsOf: musicUrlw)
+            audioPlayer?.play()
+            isMusicPlayingw = true
+        } catch {
+            print("Failed to play ending music: \(error.localizedDescription)")
         }
+    }
     
     func tpauseGame() {
         pauseGame.toggle()
@@ -37,27 +39,27 @@ final class GameViewModel: NSObject, ObservableObject {
         } else{
             stopGame()
         }
-       
+        
     }
     
     
     
     func playBackgroundMusic() {
-           guard let musicUrl = Bundle.main.url(forResource: "Audio1", withExtension: "mp3") else {
-               print("Failed to find the background music file.")
-               return
-           }
-           
-           do {
-               audioPlayer = try AVAudioPlayer(contentsOf: musicUrl)
-               audioPlayer?.play()
-               isMusicPlaying = true
+        guard let musicUrl = Bundle.main.url(forResource: "Audio1", withExtension: "mp3") else {
+            print("Failed to find the background music file.")
+            return
+        }
+        
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: musicUrl)
+            audioPlayer?.play()
+            isMusicPlaying = true
         } catch {
             print("Failed to play background music: \(error.localizedDescription)")
         }
     }
     
-
+    
     private var timer: Timer? // Таймер для обратного отсчета
     
     func startGame() {
@@ -77,8 +79,8 @@ final class GameViewModel: NSObject, ObservableObject {
                 self.audioPlayer?.stop()
                 self.isMusicPlaying = false
                 if !self.isMusicPlayingw {
-                self.playEndingMusic()
-                self.isMusicPlayingw = true
+                    self.playEndingMusic()
+                    self.isMusicPlayingw = true
                     self.timerEnded = true
                 }
                 
@@ -92,6 +94,6 @@ final class GameViewModel: NSObject, ObservableObject {
         timer = nil
         isGameRunning = false
     }
-  
+    
 }
 
