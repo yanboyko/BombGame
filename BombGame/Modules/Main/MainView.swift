@@ -5,6 +5,7 @@ struct MainView: View {
     
     @ObservedObject var viewModel: MainViewModel
     @EnvironmentObject var animationViewModel: AnimationViewModel
+    @ObservedObject var gameViewModel: GameViewModel
     
     @State private var startGame = "Старт игры"
     @State private var proceedGame = "Продолжить"
@@ -85,8 +86,20 @@ struct MainView: View {
                             VStack {
                                 ActionButton(text: $startGame, onTapAction: {
                                     showGameScreen = true
+                                    
+                                        gameViewModel.isMusicPlayingw = false
+                                    
+                                   
+                                    
                                 })
-                                ActionButton(text: $proceedGame, onTapAction: viewModel.proceedGamePressed)
+                                
+                                ActionButton(text: $proceedGame, onTapAction: {
+                                showGameScreen = true
+                                    
+                                })
+                                .disabled(gameViewModel.contBut)
+                                .opacity(gameViewModel.contBut ? 0.5 : 1 )
+                                             
                                 ActionButton(text: $categories, onTapAction: {
                                     showCategoriesScreen = true }
                                 )
@@ -219,7 +232,7 @@ struct MainView: View {
                 ))
             .background(
                 NavigationLink(
-                    destination: SettingsView(viewModel: SettingsViewModel()),
+                    destination: SettingsView(gameview: GameViewModel(), viewModel: SettingsViewModel()),
                     isActive: $showSettingsScreen,
                     label: { EmptyView() }
                 ))
@@ -230,7 +243,8 @@ struct MainView: View {
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView(viewModel: MainViewModel())
+        MainView(viewModel: MainViewModel(), gameViewModel: GameViewModel())
             .environmentObject(AnimationViewModel())
+            
     }
 }

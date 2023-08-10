@@ -15,7 +15,7 @@ struct GameView: View {
             
             BackgroundView()
             
-            if viewModel.timerEnded{
+            if viewModel.isMusicPlayingw{
                 PunishmentView(viewModel: PunishmentViewModel())
             }else{
                 
@@ -23,7 +23,7 @@ struct GameView: View {
                 VStack {
                     HStack(alignment: .center) {
                         Button {
-                            //
+                            
                         } label: {
                             Image(systemName: Resources.Image.back)
                                 .foregroundColor(.black)
@@ -61,7 +61,6 @@ struct GameView: View {
                                 .multilineTextAlignment(.center)
                                 .font(.system(size: 28, weight: .bold))
                                 .foregroundColor(Resources.Colors.mainPurple)
-                            
                         }
                     }
                     Image(Resources.Image.bomb)
@@ -74,27 +73,14 @@ struct GameView: View {
                             viewModel.playBackgroundMusic()
                             currentQuestion = viewModel.randomQuestion()
                             isButtonVisible = false
-                            
                             viewModel.startGame()
-                            
-                            
                         }
-                        
-                        
-                        
-                        
                     }
-                    
-                    
-                    
-                    
-                    
                 }
             }
         }
-        //        }
     }
-   
+    
 }
 
 struct GameView_Previews: PreviewProvider {
