@@ -8,8 +8,10 @@
 import Foundation
 
 @MainActor final class PunishmentViewModel: ObservableObject {
-
+    
     @Published var punishment: Punishment
+
+
 
     func getAnotherQuestion() {
         self.punishment = Punishment.getRandomPunishment()
@@ -19,9 +21,7 @@ import Foundation
         
     }
 
-    func goBack() {
-
-    }
+   
 
     func setOnPause() {
 

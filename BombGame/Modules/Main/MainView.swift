@@ -86,19 +86,17 @@ struct MainView: View {
                             VStack {
                                 ActionButton(text: $startGame, onTapAction: {
                                     showGameScreen = true
-                                    
-                                        gameViewModel.isMusicPlayingw = false
+                                    gameViewModel.isMusicPlayingw = false
                                     
                                    
                                     
                                 })
                                 
                                 ActionButton(text: $proceedGame, onTapAction: {
-                                showGameScreen = true
+                               
                                     
                                 })
-                                .disabled(gameViewModel.contBut)
-                                .opacity(gameViewModel.contBut ? 0.5 : 1 )
+                                
                                              
                                 ActionButton(text: $categories, onTapAction: {
                                     showCategoriesScreen = true }
