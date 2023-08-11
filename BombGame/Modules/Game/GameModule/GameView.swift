@@ -17,7 +17,8 @@ struct GameView: View {
         ZStack {
             BackgroundView()
             
-            if viewModel.timerEnded {
+            if viewModel.timerEnded{
+                
                 PunishmentView(viewModel: PunishmentViewModel())
             } else {
                 VStack {

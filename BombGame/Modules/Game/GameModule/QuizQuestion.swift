@@ -8,29 +8,32 @@
 import Foundation
 
 struct QuizQuestion {
+    let category: String
     let question: String
 
     static let quizData: [QuizQuestion] = [
-        QuizQuestion(question: "Назовите безалкогольный напиток"),
-        QuizQuestion(question: "Назовите 3 вида спорта"),
-        QuizQuestion(question: "Назовите компанию, которая имеет логотип в виде яблока"),
-        QuizQuestion(question: "Назовите какой цвет получится при смешивании желтого и зеленого"),
-        QuizQuestion(question: "Назовите вторую по счету планету в солнечной системе"),
-        QuizQuestion(question: "Сколько ног у муравья"),
-        QuizQuestion(question: "Какое животное издает 'мяу'"),
-        QuizQuestion(question: "Какая буква является первой в алфавите"),
-        QuizQuestion(question: "Сколько дней в феврале в високосном году"),
-        QuizQuestion(question: "Как называется столица Испании"),
-        QuizQuestion(question: "Как зовут принцессу-героиню в сказке 'Спящая красавица'"),
-        QuizQuestion(question: "Какой цвет получается при смешивании синего и желтого"),
-        QuizQuestion(question: "Какое животное является символом Великобритании"),
-        QuizQuestion(question: "Сколько пальцев на руке у человека"),
-        QuizQuestion(question: "Какую форму имеет футбольное поле"),
-        QuizQuestion(question: "Как называется первый месяц календарного года"),
-        QuizQuestion(question: "Сколько кварталов в году"),
-        QuizQuestion(question: "Сколько дней в августе"),
-        QuizQuestion(question: "Кто является президентом Соединенных Штатов Америки"),
-        QuizQuestion(question: "Какое имя у главного героя сказки 'Красная Шапочка'"),
+      
+            QuizQuestion(category: "Хобби и спорт", question: "Какое ваше любимое спортивное мероприятие?"),
+            QuizQuestion(category: "Хобби и спорт", question: "Какие спортивные игры вы любите играть?"),
+            QuizQuestion(category: "Хобби и спорт", question: "Какой ваш любимый вид спорта для просмотра?"),
+            QuizQuestion(category: "Хобби и спорт", question: "Какую футбольную команду вы поддерживаете?"),
+            QuizQuestion(category: "Хобби и спорт", question: "Какими спортивными активностями вы увлекаетесь на выходных?"),
+            QuizQuestion(category: "Хобби и спорт", question: "Какие спортивные достижения вы совершили или хотели бы совершить?"),
+            QuizQuestion(category: "Хобби и спорт", question: "Какую спортивную экипировку вы предпочитаете использовать?"),
+            QuizQuestion(category: "Хобби и спорт", question: "Каким образом спортивные занятия влияют на вашу жизнь и здоровье?"),
+            QuizQuestion(category: "Хобби и спорт", question: "Какие футбольные лиги или турниры вы предпочитаете следить?"),
+            QuizQuestion(category: "Хобби и спорт", question: "Какие популярные хобби у спортсменов вам известны?"),
+            QuizQuestion(category: "Хобби и спорт", question: "Как проводите свободное время, связанное со спортом или хобби?"),
+            QuizQuestion(category: "Хобби и спорт", question: "Какие профессиональные спортсмены вас вдохновляют или являются вашими кумирами?"),
+            QuizQuestion(category: "Хобби и спорт", question: "Каким спортивным событием вы мечтаете побывать?"),
+            QuizQuestion(category: "Хобби и спорт", question: "Какие спортивные достижения вас впечатлили больше всего?"),
+            QuizQuestion(category: "Хобби и спорт", question: "Какую роль занимают спорт и хобби в вашей жизни?"),
+            QuizQuestion(category: "Хобби и спорт", question: "Какими спортивными активностями вы занимаетесь в свободное время?"),
+            QuizQuestion(category: "Хобби и спорт", question: "Какие спортивные аксессуары или снаряжение вы предпочитаете использовать?"),
+            QuizQuestion(category: "Хобби и спорт", question: "Как вы выбираете спортивные мероприятия, которые смотрите или посещаете?"),
+            QuizQuestion(category: "Хобби и спорт", question: "Какие спортивные игры или компетиции вы любите играть с друзьями?")
+        
+    
     ]
 }
 

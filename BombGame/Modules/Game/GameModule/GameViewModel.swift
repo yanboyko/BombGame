@@ -78,12 +78,15 @@ final class GameViewModel: ObservableObject {
             } else {
                 self.audioPlayer?.stop()
                 self.isMusicPlaying = false
+                stopGame()
                 if !self.isMusicPlayingw {
                     self.explousionSound()
                     self.isMusicPlayingw = true
                     self.timerEnded = true
+                   
+                    
                 }
-                
+               
             }
         }
     }
