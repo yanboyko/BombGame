@@ -1,22 +1,32 @@
 import Foundation
 
 final class CategoriesViewModel: ObservableObject {
+    @Published private var selectedCategories: Set<Category> = []
+    @Published var selectedQuestions: [QuestionWithCategory] = []
     
     var questionBox = QuestionsBox()
-    @Published var selectedQuestions: [QuestionWithCategory] = []
-
-    func categoryTapped(category: Category) {
-        if let categoryName = QuestionsBox.CategoryName(rawValue: category.text) {
-            if selectedQuestions.firstIndex(where: { $0.category == categoryName }) != nil {
-                // Deselect category
-                selectedQuestions.removeAll { $0.category == categoryName }
-            } else {
-                // Select category and add its questions
-                let selectedQuestionsForCategory = questionBox.selectedCategory(categoryName: category.text)
-                selectedQuestions.append(contentsOf: selectedQuestionsForCategory)
-            }
+    var maxSelectedCategories = 4
+    
+    // Check if a category is selected
+    func isCategorySelected(_ category: Category) -> Bool {
+        selectedCategories.contains(category)
+    }
+    
+    // Handle category selection and adding questions to the array
+    func categorySelected(_ category: Category, isSelected: Bool) {
+        guard let categoryName = QuestionsBox.CategoryName(rawValue: category.text) else { return }
+        if isSelected {
+            selectedCategories.insert(category)
+            let selectedQuestionsForCategory = questionBox.selectedCategory(categoryName: category.text)
+            selectedQuestions.append(contentsOf: selectedQuestionsForCategory)
+            print("categories count \(selectedCategories.count)")
+            
+        } else {
+            selectedCategories.remove(category)
+            selectedQuestions.removeAll { $0.category == categoryName }
+            print("categories count \(selectedCategories.count)")
         }
-        print(selectedQuestions)
-        print(selectedQuestions.randomElement()?.text ?? "тут должен был быть случайный вопрос")
+        let randomQuestionText = selectedQuestions.randomElement()?.text ?? "тут должен был быть случайный вопрос"
+        print("random question is \(randomQuestionText)")
     }
 }

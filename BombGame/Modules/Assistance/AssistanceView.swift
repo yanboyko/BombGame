@@ -113,7 +113,7 @@ struct AssistanceView: View {
                         LazyVGrid(columns: columns) {
                             ForEach(categoryData, id: \.text) { category in
                                 CategoryButton(
-                                    text: Binding.constant(category.text),
+                                    isChosen: Binding.constant(false), text: Binding.constant(category.text),
                                     imageName: Binding.constant(category.imageName)
                                 )
                                 .disabled(true)

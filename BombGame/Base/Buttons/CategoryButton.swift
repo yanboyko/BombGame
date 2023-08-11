@@ -1,7 +1,9 @@
 import SwiftUI
 
 struct CategoryButton: View {
-    @State private var isChosen: Bool = false
+//    @State private var isChosen: Bool = false
+    @Binding var isChosen: Bool  // Updated binding to track selection
+
     @Binding var text: String
     @Binding var imageName: String
     
