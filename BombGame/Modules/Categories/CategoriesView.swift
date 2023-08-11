@@ -50,12 +50,6 @@ struct CategoriesView: View {
                         text: Binding.constant(category.text),
                         imageName: Binding.constant(category.imageName),
                         onTapAction: {
-                            viewModel.categoryTapped(category: category)
-//                ForEach(categoryData, id: \.text) { category in
-//                    CategoryButton(
-//                        text: Binding.constant(category.text),
-//                        imageName: Binding.constant(category.imageName),
-//                        onTapAction: {
 //                            viewModel.categoryTapped(category: category)
                         }
                     )
