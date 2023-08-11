@@ -18,16 +18,21 @@ struct QuestionsBox {
     
     var questionsAndCategories = [
         QuestionWithCategory(text: "miscellaneous", category: .miscellaneous),
-        QuestionWithCategory(text: "aboutLifel", category: .aboutLife),
-        QuestionWithCategory(text: "artsAndCinema", category: .artsAndCinema),
-        QuestionWithCategory(text: "celebrities", category: .celebrities),
-        QuestionWithCategory(text: "nature", category: .nature),
-        QuestionWithCategory(text: "sportsAndHobbies", category: .sportsAndHobbies),
         QuestionWithCategory(text: "about all", category: .miscellaneous),
+
+        QuestionWithCategory(text: "aboutLifel", category: .aboutLife),
         QuestionWithCategory(text: "life is good", category: .aboutLife),
+
+        QuestionWithCategory(text: "artsAndCinema", category: .artsAndCinema),
         QuestionWithCategory(text: "BARBY", category: .artsAndCinema),
+
+        QuestionWithCategory(text: "celebrities", category: .celebrities),
         QuestionWithCategory(text: "JOHN SNOW", category: .celebrities),
+
+        QuestionWithCategory(text: "nature", category: .nature),
         QuestionWithCategory(text: "Picture of nature", category: .nature),
+
+        QuestionWithCategory(text: "sportsAndHobbies", category: .sportsAndHobbies),
         QuestionWithCategory(text: "Football", category: .sportsAndHobbies),
     ]
     

@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct Category {
+struct Category: Hashable {
     var text: String
     var imageName: String
 }
@@ -9,8 +9,10 @@ struct CategoriesView: View {
     @ObservedObject var viewModel: CategoriesViewModel
     @Environment(\.presentationMode) var presentationMode
     
-    var questionBox = QuestionsBox()
+//    var questionBox = QuestionsBox()
     
+    @State private var selectedCount = 0
+
     let columns = [
         GridItem(.adaptive(minimum: 150))
     ]
@@ -30,10 +32,31 @@ struct CategoriesView: View {
             LazyVGrid(columns: columns, spacing: 16) {
                 ForEach(categoryData, id: \.text) { category in
                     CategoryButton(
+                        isChosen: Binding(
+                            get: { viewModel.isCategorySelected(category) },
+                            set: { newValue in
+                                if newValue {
+                                    if selectedCount < 4 {
+                                        selectedCount += 1
+                                    } else {
+                                        return
+                                    }
+                                } else {
+                                    selectedCount -= 1
+                                }
+                                viewModel.categorySelected(category, isSelected: newValue)
+                            }
+                        ),
                         text: Binding.constant(category.text),
                         imageName: Binding.constant(category.imageName),
                         onTapAction: {
                             viewModel.categoryTapped(category: category)
+//                ForEach(categoryData, id: \.text) { category in
+//                    CategoryButton(
+//                        text: Binding.constant(category.text),
+//                        imageName: Binding.constant(category.imageName),
+//                        onTapAction: {
+//                            viewModel.categoryTapped(category: category)
                         }
                     )
                 }
@@ -42,11 +65,11 @@ struct CategoriesView: View {
         }
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
-                    ToolbarItem(placement: .principal) {
-                        VStack {
-                            Text("Категории").font(.title).bold()
-                        }
-                    }
+            ToolbarItem(placement: .principal) {
+                VStack {
+                    Text("Категории").font(.title).bold()
+                }
+            }
             ToolbarItem(placement: .navigationBarLeading) {
                 Button {
                     presentationMode.wrappedValue.dismiss()
@@ -54,7 +77,7 @@ struct CategoriesView: View {
                     Image(systemName: "chevron.backward")
                 }
             }
-                }
+        }
         .foregroundColor(Resources.Colors.mainPurple)
         .navigationBarBackButtonHidden(true)
     }
