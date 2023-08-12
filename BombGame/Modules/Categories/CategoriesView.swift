@@ -57,6 +57,7 @@ struct CategoriesView: View {
             }
             .padding(16)
         }
+        .onDisappear(perform: viewModel.viewDissapeared)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .principal) {
