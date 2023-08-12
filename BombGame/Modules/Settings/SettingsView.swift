@@ -69,7 +69,7 @@ struct SettingsView: View {
                         .labelsHidden()
                         .toggleStyle(SwitchToggleStyle(tint: Resources.Colors.mainPurple))
                         .onChange(of: oldAnimation) { newValue in
-                            viewModel.isAnimation.toggle()
+                          //  viewModel.isAnimation.toggle()
                             animationViewModel.turnAnimation()
                         }
                 }
