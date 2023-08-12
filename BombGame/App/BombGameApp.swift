@@ -7,7 +7,7 @@ struct BombGameApp: App {
     
     var body: some Scene {
         WindowGroup {
-            MainView()
+            MainView(viewModel: MainViewModel())
                 .environmentObject(animationViewModel)
         }
     }

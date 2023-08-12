@@ -3,7 +3,7 @@ import RiveRuntime
 
 struct MainView: View {
     
-//    @ObservedObject var viewModel: MainViewModel
+    @ObservedObject var viewModel: MainViewModel
     @EnvironmentObject var animationViewModel: AnimationViewModel
    // @ObservedObject var gameViewModel: GameViewModel
     
@@ -129,10 +129,12 @@ struct MainView: View {
                             VStack {
                                 ActionButton(text: $startGame) {
                                     showNewGame = true
+                                    showGameContinue = false
                                 }
                                 
                                 ActionButton(text: $proceedGame) {
                                     showGameContinue = true
+                                    showNewGame = false
                                     resumeGameButtonIsPressed = true
                                 }
                                 
@@ -268,13 +270,13 @@ struct MainView: View {
                 ))
             .background(
                 NavigationLink(
-                    destination: GameView(viewModel: GameViewModel(isFreshGame: false)),
+                    destination: GameView(viewModel: GameViewModel(isFreshGame: showGameContinue, currentGame: viewModel.fetchSavedGame())),
                     isActive: $showGameContinue,
                     label: { EmptyView() }
                 ))
             .background(
                 NavigationLink(
-                    destination: GameView(viewModel: GameViewModel(isFreshGame: true)),
+                    destination: GameView(viewModel: GameViewModel(isFreshGame: showNewGame, currentGame: nil)),
                     isActive: $showNewGame,
                     label: { EmptyView() }
                 ))

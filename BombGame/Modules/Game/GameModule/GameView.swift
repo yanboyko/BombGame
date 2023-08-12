@@ -1,20 +1,16 @@
 import SwiftUI
 
 struct GameView: View {
-    
     @ObservedObject var viewModel: GameViewModel
-  
-    @State var startButtonName = Resources.Text.startButtonName
-    @State var stopButtonName = Resources.Text.stopButtonName
+    @State var startTitle = Resources.Text.startButtonName
+    @State var stopTitle = Resources.Text.stopButtonName
     @State var startStopButtonVisible = true
     @State var showGameScreen = false
-
     @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
         ZStack {
             BackgroundView()
-            
             if viewModel.timerEnded {
                 PunishmentView(viewModel: PunishmentViewModel()) {
                     viewModel.isFreshGame = true
@@ -22,17 +18,14 @@ struct GameView: View {
                 }
             } else {
                 VStack {
-                    
                     HStack(alignment: .center) {
                         Button {
                             presentationMode.wrappedValue.dismiss()
                             viewModel.stopGame()
-                           
                         } label: {
                             Image(systemName: Resources.Image.back)
                                 .foregroundColor(.black)
                         }
-                        
                         Spacer()
                         if !startStopButtonVisible {
                             Button {
@@ -46,20 +39,14 @@ struct GameView: View {
                             }
                             .font(.largeTitle)
                             .foregroundColor(.black)
-                            
                         }
-                       
                     }
                     .padding()
-                    
                     if startStopButtonVisible {
-                        Text("Нажмите")
+                        Text("Нажмите \n \"Запустить\" чтобы начать игру")
                             .font(.system(size: 28, weight: .bold))
                             .foregroundColor(Resources.Colors.mainPurple)
-                        Text("\"Запустить\" чтобы начать игру")
                             .multilineTextAlignment(.center)
-                            .font(.system(size: 28, weight: .bold))
-                            .foregroundColor(Resources.Colors.mainPurple)
                     } else {
                         if !viewModel.isGameOnPause {
                             Text(viewModel.currentGame?.currentQuestion.question ?? "")
@@ -68,26 +55,18 @@ struct GameView: View {
                                 .foregroundColor(Resources.Colors.mainPurple)
                                 .padding(.horizontal)
                         } else {
-                            Text(stopButtonName)
+                            Text(stopTitle)
                                 .multilineTextAlignment(.center)
                                 .font(.system(size: 28, weight: .bold))
                                 .foregroundColor(Resources.Colors.mainPurple)
                         }
                     }
-                    
                     Image(Resources.Image.bomb)
                         .padding(.leading)
-                    
                     Spacer()
-                    
                     if startStopButtonVisible {
-                        ActionButton(text: $startButtonName) {
-//                            viewModel.timerValue = 20
-//                            viewModel.playBackgroundMusic()
-//                            startStopButtonVisible = false
-//                            viewModel.startGame()
+                        ActionButton(text: $startTitle) {
                             viewModel.initilizeGame()
-                          //  viewModel.startGame()
                             startStopButtonVisible = false
                         }
                     }
@@ -103,6 +82,6 @@ struct GameView: View {
 
 //struct GameView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        GameView(viewModel: GameViewModel())
+//        GameView(viewModel: GameViewModel(isFreshGame: true))
 //    }
 //}

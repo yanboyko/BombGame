@@ -13,8 +13,12 @@ final class GameViewModel: ObservableObject {
 
     var isFreshGame: Bool
 
-    init(isFreshGame: Bool) {
+    init(
+        isFreshGame: Bool,
+        currentGame: GameModel?
+    ) {
         self.isFreshGame = isFreshGame
+        self.currentGame = currentGame
     }
 
     func updateGame() {
