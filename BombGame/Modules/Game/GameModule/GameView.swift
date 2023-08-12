@@ -6,7 +6,6 @@ struct GameView: View {
   
     @State var startButtonName = Resources.Text.startButtonName
     @State var stopButtonName = Resources.Text.stopButtonName
-    @State var pauseGameView = false
     @State var startStopButtonVisible = true
     @State var showGameScreen = false
     @State private var currentQuestion: QuizQuestion?
@@ -36,7 +35,7 @@ struct GameView: View {
                         Spacer()
                         if !startStopButtonVisible {
                             Button {
-                                viewModel.tpauseGame()
+                                viewModel.pausingGame()
                             } label: {
                                 if viewModel.pauseGame {
                                     Image(systemName:"pause.circle")

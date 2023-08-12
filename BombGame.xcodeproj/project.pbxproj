@@ -44,8 +44,7 @@
 		AB3A489B2A8148C6004D5B6F /* PunishmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3A489A2A8148C6004D5B6F /* PunishmentView.swift */; };
 		AB3A489D2A8148E7004D5B6F /* PunishmentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3A489C2A8148E7004D5B6F /* PunishmentViewModel.swift */; };
 		FAAD891D2A82688A00F73927 /* SecondGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAD891C2A82688A00F73927 /* SecondGameView.swift */; };
-		FAAD891F2A82691000F73927 /* Audio1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FAAD891E2A82690F00F73927 /* Audio1.mp3 */; };
-		FAC9AB0C2A83C2E0003E38D3 /* explousion.wav in Resources */ = {isa = PBXBuildFile; fileRef = FAC9AB0B2A83C2E0003E38D3 /* explousion.wav */; };
+		FAAD891F2A82691000F73927 /* Мелодия 1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FAAD891E2A82690F00F73927 /* Мелодия 1.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,8 +85,7 @@
 		AB3A489A2A8148C6004D5B6F /* PunishmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PunishmentView.swift; sourceTree = "<group>"; };
 		AB3A489C2A8148E7004D5B6F /* PunishmentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PunishmentViewModel.swift; sourceTree = "<group>"; };
 		FAAD891C2A82688A00F73927 /* SecondGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondGameView.swift; sourceTree = "<group>"; };
-		FAAD891E2A82690F00F73927 /* Audio1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Audio1.mp3; sourceTree = "<group>"; };
-		FAC9AB0B2A83C2E0003E38D3 /* explousion.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = explousion.wav; sourceTree = "<group>"; };
+		FAAD891E2A82690F00F73927 /* Мелодия 1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Мелодия 1.mp3"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -309,8 +307,7 @@
 		FAAD89202A82691200F73927 /* Audio */ = {
 			isa = PBXGroup;
 			children = (
-				FAC9AB0B2A83C2E0003E38D3 /* explousion.wav */,
-				FAAD891E2A82690F00F73927 /* Audio1.mp3 */,
+				FAAD891E2A82690F00F73927 /* Мелодия 1.mp3 */,
 			);
 			path = Audio;
 			sourceTree = "<group>";
@@ -379,7 +376,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FAAD891F2A82691000F73927 /* Audio1.mp3 in Resources */,
+				FAAD891F2A82691000F73927 /* Мелодия 1.mp3 in Resources */,
 				A12013932A826869003B394C /* bombanimation.riv in Resources */,
 				A12013822A82585F003B394C /* categoriesbutton.riv in Resources */,
 				A12013982A82D7B9003B394C /* bomblabel1.riv in Resources */,
@@ -388,7 +385,6 @@
 				A12013962A82D544003B394C /* bomblabel.riv in Resources */,
 				A12013862A825871003B394C /* helpbutton.riv in Resources */,
 				2C9444F52A7FCB4E00C14CAA /* Assets.xcassets in Resources */,
-				FAC9AB0C2A83C2E0003E38D3 /* explousion.wav in Resources */,
 				A12013842A82586B003B394C /* settingsbutton.riv in Resources */,
 				A120137E2A82584C003B394C /* startgamebutton.riv in Resources */,
 			);

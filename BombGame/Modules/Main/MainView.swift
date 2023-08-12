@@ -86,7 +86,7 @@ struct MainView: View {
                             VStack {
                                 ActionButton(text: $startGame, onTapAction: {
                                     showGameScreen = true
-                                    gameViewModel.isMusicPlayingw = false
+                                    gameViewModel.explousionBlasting = false
                                     
                                    
                                     
