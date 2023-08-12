@@ -16,21 +16,14 @@ struct CategoriesView: View {
     let columns = [
         GridItem(.adaptive(minimum: 150))
     ]
-    
-    var categoryData: [Category] = [
-        Category(text: "О Разном", imageName: "category1"),
-        Category(text: "Спорт и Хобби", imageName: "category2"),
-        Category(text: "Про Жизнь", imageName: "category3"),
-        Category(text: "Знаменитости", imageName: "category4"),
-        Category(text: "Искусство и Кино", imageName: "category5"),
-        Category(text: "Природа", imageName: "category6")
-    ]
+
     
     var body: some View {
         ZStack {
             BackgroundView()
             LazyVGrid(columns: columns, spacing: 16) {
-                ForEach(categoryData, id: \.text) { category in
+                ForEach(QuestionsBox.CategoryName.allCases.indices, id: \.self) { id in
+                    let category = QuestionsBox.CategoryName.allCases[id]
                     CategoryButton(
                         isChosen: Binding(
                             get: { viewModel.isCategorySelected(category) },
@@ -47,8 +40,8 @@ struct CategoriesView: View {
                                 viewModel.categorySelected(category, isSelected: newValue)
                             }
                         ),
-                        text: Binding.constant(category.text),
-                        imageName: Binding.constant(category.imageName),
+                        text: Binding.constant(category.rawValue),
+                        imageName: Binding.constant("category\(id + 1)"),
                         onTapAction: {
 //                            viewModel.categoryTapped(category: category)
                         }
@@ -57,6 +50,7 @@ struct CategoriesView: View {
             }
             .padding(16)
         }
+        .onAppear(perform: viewModel.viewAppeared)
         .onDisappear(perform: viewModel.viewDissapeared)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
