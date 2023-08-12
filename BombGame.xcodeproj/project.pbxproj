@@ -43,6 +43,14 @@
 		AB3A48962A814585004D5B6F /* Punishment.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3A48952A814585004D5B6F /* Punishment.swift */; };
 		AB3A489B2A8148C6004D5B6F /* PunishmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3A489A2A8148C6004D5B6F /* PunishmentView.swift */; };
 		AB3A489D2A8148E7004D5B6F /* PunishmentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3A489C2A8148E7004D5B6F /* PunishmentViewModel.swift */; };
+		FA40211F2A87A1A50043111B /* Часы 2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FA4021172A87A1A50043111B /* Часы 2.mp3 */; };
+		FA4021202A87A1A50043111B /* Взрыв 2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FA4021182A87A1A50043111B /* Взрыв 2.mp3 */; };
+		FA4021212A87A1A50043111B /* Мелодия 3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FA4021192A87A1A50043111B /* Мелодия 3.mp3 */; };
+		FA4021222A87A1A50043111B /* Взрыв 3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FA40211A2A87A1A50043111B /* Взрыв 3.mp3 */; };
+		FA4021232A87A1A50043111B /* Часы 1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FA40211B2A87A1A50043111B /* Часы 1.mp3 */; };
+		FA4021242A87A1A50043111B /* Взрыв 1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FA40211C2A87A1A50043111B /* Взрыв 1.mp3 */; };
+		FA4021252A87A1A50043111B /* Мелодия 2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FA40211D2A87A1A50043111B /* Мелодия 2.mp3 */; };
+		FA4021262A87A1A50043111B /* Часы 3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FA40211E2A87A1A50043111B /* Часы 3.mp3 */; };
 		FAAD891D2A82688A00F73927 /* SecondGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAD891C2A82688A00F73927 /* SecondGameView.swift */; };
 		FAAD891F2A82691000F73927 /* Мелодия 1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FAAD891E2A82690F00F73927 /* Мелодия 1.mp3 */; };
 /* End PBXBuildFile section */
@@ -84,6 +92,14 @@
 		AB3A48952A814585004D5B6F /* Punishment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Punishment.swift; sourceTree = "<group>"; };
 		AB3A489A2A8148C6004D5B6F /* PunishmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PunishmentView.swift; sourceTree = "<group>"; };
 		AB3A489C2A8148E7004D5B6F /* PunishmentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PunishmentViewModel.swift; sourceTree = "<group>"; };
+		FA4021172A87A1A50043111B /* Часы 2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Часы 2.mp3"; sourceTree = "<group>"; };
+		FA4021182A87A1A50043111B /* Взрыв 2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Взрыв 2.mp3"; sourceTree = "<group>"; };
+		FA4021192A87A1A50043111B /* Мелодия 3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Мелодия 3.mp3"; sourceTree = "<group>"; };
+		FA40211A2A87A1A50043111B /* Взрыв 3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Взрыв 3.mp3"; sourceTree = "<group>"; };
+		FA40211B2A87A1A50043111B /* Часы 1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Часы 1.mp3"; sourceTree = "<group>"; };
+		FA40211C2A87A1A50043111B /* Взрыв 1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "Взрыв 1.mp3"; path = "../../../../Downloads/Взрыв 1.mp3"; sourceTree = "<group>"; };
+		FA40211D2A87A1A50043111B /* Мелодия 2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Мелодия 2.mp3"; sourceTree = "<group>"; };
+		FA40211E2A87A1A50043111B /* Часы 3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Часы 3.mp3"; sourceTree = "<group>"; };
 		FAAD891C2A82688A00F73927 /* SecondGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondGameView.swift; sourceTree = "<group>"; };
 		FAAD891E2A82690F00F73927 /* Мелодия 1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Мелодия 1.mp3"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -307,6 +323,14 @@
 		FAAD89202A82691200F73927 /* Audio */ = {
 			isa = PBXGroup;
 			children = (
+				FA40211C2A87A1A50043111B /* Взрыв 1.mp3 */,
+				FA4021182A87A1A50043111B /* Взрыв 2.mp3 */,
+				FA40211A2A87A1A50043111B /* Взрыв 3.mp3 */,
+				FA40211D2A87A1A50043111B /* Мелодия 2.mp3 */,
+				FA4021192A87A1A50043111B /* Мелодия 3.mp3 */,
+				FA40211B2A87A1A50043111B /* Часы 1.mp3 */,
+				FA4021172A87A1A50043111B /* Часы 2.mp3 */,
+				FA40211E2A87A1A50043111B /* Часы 3.mp3 */,
 				FAAD891E2A82690F00F73927 /* Мелодия 1.mp3 */,
 			);
 			path = Audio;
@@ -377,14 +401,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAAD891F2A82691000F73927 /* Мелодия 1.mp3 in Resources */,
+				FA4021242A87A1A50043111B /* Взрыв 1.mp3 in Resources */,
+				FA4021202A87A1A50043111B /* Взрыв 2.mp3 in Resources */,
 				A12013932A826869003B394C /* bombanimation.riv in Resources */,
 				A12013822A82585F003B394C /* categoriesbutton.riv in Resources */,
 				A12013982A82D7B9003B394C /* bomblabel1.riv in Resources */,
+				FA4021252A87A1A50043111B /* Мелодия 2.mp3 in Resources */,
 				A12013802A825856003B394C /* resumebutton.riv in Resources */,
+				FA40211F2A87A1A50043111B /* Часы 2.mp3 in Resources */,
 				2C9444F82A7FCB4E00C14CAA /* Preview Assets.xcassets in Resources */,
 				A12013962A82D544003B394C /* bomblabel.riv in Resources */,
+				FA4021212A87A1A50043111B /* Мелодия 3.mp3 in Resources */,
 				A12013862A825871003B394C /* helpbutton.riv in Resources */,
+				FA4021222A87A1A50043111B /* Взрыв 3.mp3 in Resources */,
+				FA4021232A87A1A50043111B /* Часы 1.mp3 in Resources */,
 				2C9444F52A7FCB4E00C14CAA /* Assets.xcassets in Resources */,
+				FA4021262A87A1A50043111B /* Часы 3.mp3 in Resources */,
 				A12013842A82586B003B394C /* settingsbutton.riv in Resources */,
 				A120137E2A82584C003B394C /* startgamebutton.riv in Resources */,
 			);
