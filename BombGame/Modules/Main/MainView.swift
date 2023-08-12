@@ -286,8 +286,7 @@ struct MainView: View {
                 ))
             .background(
                 NavigationLink(
-                    destination: SettingsView(gameview: GameViewModel(isFreshGame: !resumeGameButtonIsPressed), viewModel: SettingsViewModel()),
-
+                    destination: SettingsView(viewModel: SettingsViewModel()),
                     isActive: $showSettingsScreen,
                     label: { EmptyView() }
                 ))
