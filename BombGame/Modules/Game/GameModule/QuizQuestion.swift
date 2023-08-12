@@ -7,36 +7,40 @@
 
 import Foundation
 
-struct QuizQuestion: Codable {
-    let category: String
+struct QuizQuestion {
+    let category: QuestionsBox.CategoryName
     let question: String
+  
     static func getRandomQuestion() -> QuizQuestion {
         QuizQuestion.quizData.randomElement() ?? QuizQuestion(category: "", question: "")
     }
   
     static let quizData: [QuizQuestion] = [
-        QuizQuestion(category: "Про Жизнь", question: "Сколько раз нужно посолить суп?"),
-        QuizQuestion(category: "Знаменитости", question: "Назовите актеров Форсажа"),
-        QuizQuestion(category: "Искусство и Кино", question: "Назовите фильмы Нолана"),
-        QuizQuestion(category: "Природа", question: "Какие дерувья ростут в Африке"),
-        QuizQuestion(category: "Хобби и спорт", question: "Какое ваше любимое спортивное мероприятие?"),
-        QuizQuestion(category: "Хобби и спорт", question: "Какие спортивные игры вы любите играть?"),
-        QuizQuestion(category: "Хобби и спорт", question: "Какой ваш любимый вид спорта для просмотра?"),
-        QuizQuestion(category: "Хобби и спорт", question: "Какую футбольную команду вы поддерживаете?"),
-        QuizQuestion(category: "Хобби и спорт", question: "Какими спортивными активностями вы увлекаетесь на выходных?"),
-        QuizQuestion(category: "Хобби и спорт", question: "Какие спортивные достижения вы совершили или хотели бы совершить?"),
-        QuizQuestion(category: "Хобби и спорт", question: "Какую спортивную экипировку вы предпочитаете использовать?"),
-        QuizQuestion(category: "Хобби и спорт", question: "Каким образом спортивные занятия влияют на вашу жизнь и здоровье?"),
-        QuizQuestion(category: "Хобби и спорт", question: "Какие футбольные лиги или турниры вы предпочитаете следить?"),
-        QuizQuestion(category: "Хобби и спорт", question: "Какие популярные хобби у спортсменов вам известны?"),
-        QuizQuestion(category: "Хобби и спорт", question: "Как проводите свободное время, связанное со спортом или хобби?"),
-        QuizQuestion(category: "Хобби и спорт", question: "Какие профессиональные спортсмены вас вдохновляют или являются вашими кумирами?"),
-        QuizQuestion(category: "Хобби и спорт", question: "Каким спортивным событием вы мечтаете побывать?"),
-        QuizQuestion(category: "Хобби и спорт", question: "Какие спортивные достижения вас впечатлили больше всего?"),
-        QuizQuestion(category: "Хобби и спорт", question: "Какую роль занимают спорт и хобби в вашей жизни?"),
-        QuizQuestion(category: "Хобби и спорт", question: "Какими спортивными активностями вы занимаетесь в свободное время?"),
-        QuizQuestion(category: "Хобби и спорт", question: "Какие спортивные аксессуары или снаряжение вы предпочитаете использовать?"),
-        QuizQuestion(category: "Хобби и спорт", question: "Как вы выбираете спортивные мероприятия, которые смотрите или посещаете?"),
-        QuizQuestion(category: "Хобби и спорт", question: "Какие спортивные игры или компетиции вы любите играть с друзьями?")
+        QuizQuestion(category: .aboutLife, question: "Сколько раз нужно посолить суп?"),
+        QuizQuestion(category: .aboutLife, question: "Сколько нужно яиц для омлета?"),
+        QuizQuestion(category: .aboutLife, question: "Назовите 5 ютуб-блогеров"),
+        
+        QuizQuestion(category: .celebrities, question: "Назовите актеров Форсажа"),
+        QuizQuestion(category: .artsAndCinema, question: "Назовите фильмы Нолана"),
+        QuizQuestion(category: .nature, question: "Какие дерувья ростут в Африке"),
+        QuizQuestion(category: .sportsAndHobbies, question: "Какое ваше любимое спортивное мероприятие?"),
+        QuizQuestion(category: .sportsAndHobbies, question: "Какие спортивные игры вы любите играть?"),
+        QuizQuestion(category: .sportsAndHobbies, question: "Какой ваш любимый вид спорта для просмотра?"),
+        QuizQuestion(category: .sportsAndHobbies, question: "Какую футбольную команду вы поддерживаете?"),
+        QuizQuestion(category: .sportsAndHobbies, question: "Какими спортивными активностями вы увлекаетесь на выходных?"),
+        QuizQuestion(category: .sportsAndHobbies, question: "Назовите 3 расстоновки игроков на футбольном поле"),
+        QuizQuestion(category: .sportsAndHobbies, question: "Назовите вид спорта заканчивающийся на -бол "),
+        QuizQuestion(category: .sportsAndHobbies, question: "Назовите вид спорта в котором играют ракетками"),
+        QuizQuestion(category: .sportsAndHobbies, question: "Назовите 5 языков программирования"),
+        QuizQuestion(category: .sportsAndHobbies, question: "Назовите 3 вида спорта где играют только руками "),
+        QuizQuestion(category: .sportsAndHobbies, question: "Назовите 2 игрока получивших нарграду 'Золотой мяч'?"),
+        QuizQuestion(category: .sportsAndHobbies, question: "Скажите как называется удар снизу вверх в боксе? "),
+        QuizQuestion(category: .sportsAndHobbies, question: "Назовите 5 фруктов на английском языке"),
+        QuizQuestion(category: .sportsAndHobbies, question: "Расскажите о себе на английском"),
+        QuizQuestion(category: .sportsAndHobbies, question: "Вспомните названия 5 боевых искусств"),
+        QuizQuestion(category: .sportsAndHobbies, question: "Вспомните неколько методов вызова перменной"),
+        QuizQuestion(category: .sportsAndHobbies, question: "Назовите несколько произведений Эриха Фромма"),
+        QuizQuestion(category: .sportsAndHobbies, question: "Назовите главных героев романа-эпопеи 'Война и мир' "),
+        QuizQuestion(category: .sportsAndHobbies, question: "Назовите 3 струнных музыкальных инструмента")
     ]
 }
