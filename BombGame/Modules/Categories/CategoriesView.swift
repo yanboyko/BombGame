@@ -16,15 +16,7 @@ struct CategoriesView: View {
     let columns = [
         GridItem(.adaptive(minimum: 150))
     ]
-    
-//    var categoryData: [Category] = [
-//        Category(text: "О Разном", imageName: "category1"),
-//        Category(text: "Спорт и Хобби", imageName: "category2"),
-//        Category(text: "Про Жизнь", imageName: "category3"),
-//        Category(text: "Знаменитости", imageName: "category4"),
-//        Category(text: "Искусство и Кино", imageName: "category5"),
-//        Category(text: "Природа", imageName: "category6")
-//    ]
+
     
     var body: some View {
         ZStack {
