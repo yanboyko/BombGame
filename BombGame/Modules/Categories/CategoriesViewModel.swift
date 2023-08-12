@@ -22,7 +22,10 @@ final class CategoriesViewModel: ObservableObject {
             print("categories count \(selectedCategories.count)")
 
         } else {
-            selectedCategories.remove(category)
+            if selectedCategories.count > 1 {
+                selectedCategories.remove(category)
+            }
+            
             selectedQuestions.removeAll { $0.category == category }
             print("categories count \(selectedCategories.count)")
         }
