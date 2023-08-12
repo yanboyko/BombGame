@@ -5,7 +5,6 @@ struct MainView: View {
     
     @ObservedObject var viewModel: MainViewModel
     @EnvironmentObject var animationViewModel: AnimationViewModel
-   // @ObservedObject var gameViewModel: GameViewModel
     
     @State private var startGame = Resources.Text.startGame
     @State private var proceedGame = Resources.Text.proceedGame

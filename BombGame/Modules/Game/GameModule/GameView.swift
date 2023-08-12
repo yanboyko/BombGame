@@ -1,4 +1,5 @@
 import SwiftUI
+import RiveRuntime
 
 struct GameView: View {
     @ObservedObject var viewModel: GameViewModel
@@ -7,6 +8,15 @@ struct GameView: View {
     @State var startStopButtonVisible = true
     @State var showGameScreen = false
     @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var animationViewModel: AnimationViewModel
+    
+    var bombanimation = RiveViewModel(
+        fileName: "bombanimation",
+        extension: "riv",
+        stateMachineName: "StateMachine",
+        autoPlay: false,
+        artboardName: "BombArtboard"
+    )
     
     var body: some View {
         ZStack {
@@ -61,8 +71,20 @@ struct GameView: View {
                                 .foregroundColor(Resources.Colors.mainPurple)
                         }
                     }
-                    Image(Resources.Image.bomb)
-                        .padding(.leading)
+                    
+                    if !animationViewModel.addAnimation {
+                        Image(Resources.Image.bomb)
+                            .padding(.leading)
+                    } else {
+                        VStack {
+                            bombanimation.view()
+                        }
+                        .padding(.leading, 64)
+                        .onAppear {
+                            bombanimation.setInput("timeline", value: 1.0)
+                        }
+                    }
+
                     Spacer()
                     if startStopButtonVisible {
                         ActionButton(text: $startTitle) {
