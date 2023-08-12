@@ -29,4 +29,31 @@ final class CategoriesViewModel: ObservableObject {
         let randomQuestionText = selectedQuestions.randomElement()?.text ?? "тут должен был быть случайный вопрос"
         print("random question is \(randomQuestionText)")
     }
+
+    func viewDissapeared() {
+        let categories: [QuestionsBox.CategoryName] = selectedQuestions
+            .reduce(into: []) { array, question in
+                if !array.contains(question.category) {
+                    array.append(question.category)
+                }
+            }
+
+        saveCategories(categories: categories)
+    }
+
+    private func saveCategories(categories: [QuestionsBox.CategoryName]) {
+        if let encoded = try? JSONEncoder().encode(categories) {
+            UserDefaults.standard.set(encoded, forKey: "SelectedCategories")
+        }
+    }
+
+    private func fetchCategories() -> [QuestionsBox.CategoryName] {
+        if let decoded = UserDefaults.standard.data(forKey: "SelectedCategories") {
+            if let categories = try? JSONDecoder().decode([QuestionsBox.CategoryName].self, from: decoded) {
+                return categories
+            }
+        }
+
+        return []
+    }
 }
