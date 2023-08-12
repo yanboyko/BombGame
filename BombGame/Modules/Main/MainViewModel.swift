@@ -1,7 +1,6 @@
 import Foundation
 
 final class MainViewModel: ObservableObject {
-    
     func startGamePressed() {
         print("start game pressed")
     }

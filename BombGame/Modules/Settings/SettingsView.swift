@@ -1,216 +1,246 @@
-//
-//  SettingsView.swift
-//  BombGame
-//
-//  Created by Alexandr Rodionov on 8.08.23.
-//
-
 import SwiftUI
 
 struct SettingsView: View {
-    
-    enum SelectedButton {
-        case button1, button2, button3, button4
-    }
-    
-    enum SelectedMusic: String, CaseIterable {
-        case option1 = "Мелодия 1"
-        case option2 = "Мелодия 2"
-        case option3 = "Мелодия 3"
-    }
-    
-    enum SelectedTickingBomb: String, CaseIterable {
-        case option1 = "Часы 1"
-        case option2 = "Часы 2"
-        case option3 = "Часы 3"
-    }
-    
-    enum SelectedExplosionBomb: String, CaseIterable {
-        case option1 = "Взрыв 1"
-        case option2 = "Взрыв 2"
-        case option3 = "Взрыв 3"
-    }
-
-    @ObservedObject var gameview: GameViewModel
     @ObservedObject var viewModel: SettingsViewModel
     @EnvironmentObject var animationViewModel: AnimationViewModel
-    
-    @State private var selectedButton: SelectedButton = .button1
-    
-    @State private var playingWithTasks: Bool = true
-    @State private var playibackgroundMusic: Bool = true
-    @State private var animation: Bool = false
-    
-    @State var selectedMusic: SelectedMusic = .option1
-    @State var selectedTickingBomb: SelectedTickingBomb = .option1
-    @State var selectedExplosionBomb: SelectedExplosionBomb = .option1
-    
     
     var body: some View {
         ZStack {
             BackgroundView()
-            
             VStack(spacing: 32) {
-                
                 VStack(spacing: 16) {
                     Text("Время игры")
                         .foregroundColor(Resources.Colors.mainPurple)
                         .font(.system(size: 30, weight: .heavy))
-                    
-                    
-                    HStack(spacing: 16) {
-                        TimeButton(isSelected: $selectedButton, textButton: "Короткое", buttonType: .button1) {
-                            print("Действие для Кнопки 1")
-                        }
-                        TimeButton(isSelected: $selectedButton, textButton: "Среднее", buttonType: .button2) {
-                            print("Действие для Кнопки 2")
-                        }
-                    }
-                    
-                    HStack(spacing: 16) {
-                        TimeButton(isSelected: $selectedButton, textButton: "Длинное", buttonType: .button3) {
-                            print("Действие для Кнопки 3")
-                        }
-                        TimeButton(isSelected: $selectedButton, textButton: "Случайное", buttonType: .button4) {
-                            print("Действие для Кнопки 4")
-                        }
-                    }
+                    TimeButtonsView(selectedTimeButton: $viewModel.selectedTimeButton)
                 }
-                
+                ToggleStack(
+                    isOn: $viewModel.isTask,
+                    text: "Игра с заданиями",
+                    onToggleAction: { viewModel.isTask.toggle() }
+                    )
+                ToggleStack(
+                    isOn: $viewModel.isBackgroundMusic,
+                    text: "Фоновая музыка",
+                    onToggleAction: { viewModel.isBackgroundMusic.toggle() }
+                )
+                TextStack(
+                    text: "Фоновая музыка",
+                    stackOption: .selectedMusic,
+                    selectedMusic: $viewModel.selectedMusic,
+                    selectedTickingBomb: $viewModel.selectedTickingBomb,
+                    selectedExplosionBomb: $viewModel.selectedExplosionBomb
+                )
+                TextStack(
+                    text: "Тиканье бомбы",
+                    stackOption: .selectedTickingBomb,
+                    selectedMusic: $viewModel.selectedMusic,
+                    selectedTickingBomb: $viewModel.selectedTickingBomb,
+                    selectedExplosionBomb: $viewModel.selectedExplosionBomb
+                )
+                TextStack(
+                    text: "Взрыв бомбы",
+                    stackOption: .selectedExplosionBomb,
+                    selectedMusic: $viewModel.selectedMusic,
+                    selectedTickingBomb: $viewModel.selectedTickingBomb,
+                    selectedExplosionBomb: $viewModel.selectedExplosionBomb
+                )
+                ToggleStack(
+                    isOn: $viewModel.isAnimation,
+                    text: "Анимация",
+                    onToggleAction: {
+                        viewModel.isAnimation.toggle()
+                        animationViewModel.turnAnimation()
+                    }
+                )
                 Spacer()
-                
-                HStack {
-                    Text("Игра с заданиями")
-                        .foregroundColor(Resources.Colors.mainPurple)
-                        .font(.system(size: 26, weight: .heavy))
-                    Spacer()
-                    Toggle("", isOn: $playingWithTasks)
-                        .labelsHidden()
-                        .toggleStyle(SwitchToggleStyle(tint: Resources.Colors.mainPurple))
-                }
-                HStack {
-                    Text("Фоновая музыка")
-                        .foregroundColor(Resources.Colors.mainPurple)
-                        .font(.system(size: 26, weight: .heavy))
-                    Spacer()
-                    Toggle("", isOn: $playibackgroundMusic)
-                        .labelsHidden()
-                        .toggleStyle(SwitchToggleStyle(tint: Resources.Colors.mainPurple))
-                }
-                
-                HStack {
-                    Text("Фоновая музыка")
-                        .foregroundColor(Resources.Colors.mainPurple)
-                        .font(.system(size: 26, weight: .heavy))
-                    Spacer()
-                    Menu(selectedMusic.rawValue) {
-                        ForEach(SelectedMusic.allCases, id: \.self) { option in
-                            Button(action: {
-                                selectedMusic = option
-                            }) {
-                                Text(option.rawValue)
-                            }
-                        }
-                    }
-                    .foregroundColor(.black)
-                    .font(.headline)
-                }
-                
-                HStack {
-                    Text("Тиканье бомбы")
-                        .foregroundColor(Resources.Colors.mainPurple)
-                        .font(.system(size: 26, weight: .heavy))
-                    Spacer()
-                    Menu(selectedTickingBomb.rawValue) {
-                        ForEach(SelectedTickingBomb.allCases, id: \.self) { option in
-                            Button(action: {
-                                selectedTickingBomb = option
-                            }) {
-                                Text(option.rawValue)
-                            }
-                        }
-                    }
-                    .foregroundColor(.black)
-                    .font(.headline)
-                }
-                
-                HStack {
-                    Text("Взрыв бомбы")
-                        .foregroundColor(Resources.Colors.mainPurple)
-                        .font(.system(size: 26, weight: .heavy))
-                    Spacer()
-                    Menu(selectedExplosionBomb.rawValue) {
-                        ForEach(SelectedExplosionBomb.allCases, id: \.self) { option in
-                            Button(action: {
-                                selectedExplosionBomb = option
-                            }) {
-                                Text(option.rawValue)
-                            }
-                        }
-                    }
-                    .foregroundColor(.black)
-                    .font(.headline)
-                }
-                
-                HStack {
-                    Text("Анимация")
-                        .foregroundColor(Resources.Colors.mainPurple)
-                        .font(.system(size: 26, weight: .heavy))
-                    Spacer()
-                    Toggle("", isOn: $animation)
-                        .labelsHidden()
-                        .toggleStyle(SwitchToggleStyle(tint: Resources.Colors.mainPurple))
-                }
-                .onChange(of: animation) { newValue in
-                    animationViewModel.turnAnimation()
-                }
-                Spacer()
-                
             }
             .padding()
         }
+        .onAppear {
+            DispatchQueue.main.async {
+                viewModel.loadSettings()
+            }
+        }
+        .onDisappear {
+            viewModel.saveSettings()
+        }
     }
+}
+
+private struct TimeButtonsView: View {
+    @Binding var selectedTimeButton: TimeButtonType
     
-    struct TimeButton: View {
+    var body: some View {
+        HStack(spacing: 16) {
+            TimeButton(
+                text: "Короткое",
+                buttonType: .short,
+                isSelected: selectedTimeButton == .short ? true : false
+            ) {
+                selectedTimeButton = .short
+                print("Действие для Кнопки 1")
+            }
+            TimeButton(
+                text: "Среднее",
+                buttonType: .average,
+                isSelected: selectedTimeButton == .average ? true : false
+            ) {
+                selectedTimeButton = .average
+                print("Действие для Кнопки 2")
+            }
+        }
         
-        @Binding var isSelected: SelectedButton
-        var textButton: String
-        var buttonType: SelectedButton
-        var externalAction: () -> Void
-        
-        var body: some View {
-            Button(action: {
-                if isSelected == buttonType {
-                    isSelected = .button1
-                } else {
-                    isSelected = buttonType
-                }
-                externalAction()
-            }) {
-                Text(textButton)
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .foregroundColor(isSelected == buttonType ? Resources.Colors.mainText : Resources.Colors.mainPurple)
-                    .font(.system(size: 26, weight: .bold))
-                    .background(
-                        RoundedRectangle(cornerRadius: 10)
-                            .fill(isSelected == buttonType ? Resources.Colors.mainPurple : Resources.Colors.mainText)
-                    )
-                    .clipShape(RoundedRectangle(cornerRadius: 30))
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 30)
-                            .stroke(Color.black, lineWidth: 2)
-                    )
-                    .shadow(color: .black, radius: 5, x: 5, y: 5)
+        HStack(spacing: 16) {
+            TimeButton(
+                text: "Длинное",
+                buttonType: .long,
+                isSelected: selectedTimeButton == .long ? true : false
+            ) {
+                selectedTimeButton = .long
+                print("Действие для Кнопки 3")
+            }
+            TimeButton(
+                text: "Случайное",
+                buttonType: .random,
+                isSelected: selectedTimeButton == .random ? true : false
+            ) {
+                selectedTimeButton = .random
+                print("Действие для Кнопки 4")
             }
         }
     }
+}
+
+private struct TimeButton: View {
+    let text: String
+    let buttonType: TimeButtonType
+    var isSelected: Bool
+    let onTapAction: () -> ()
     
+    var body: some View {
+        if isSelected {
+            Button {
+                onTapAction()
+            } label: {
+                Text(text)
+                    .font(.system(size: 16, weight: .heavy))
+                    .multilineTextAlignment(.center)
+                    .foregroundColor(Color("mainTextColor"))
+            }
+            .frame(width: 147, height: 38)
+            .background(Color("mainPurple"))
+            .cornerRadius(50)
+            .shadow(color: .black.opacity(0.08), radius: 12, x: 0, y: 2)
+            .shadow(color: .black.opacity(0.08), radius: 1, x: 0, y: 0)
+            .overlay(
+            RoundedRectangle(cornerRadius: 50)
+            .stroke(.black, lineWidth: 1)
+            )
+        } else {
+            Button {
+                onTapAction()
+            } label: {
+                Text(text)
+                    .font(.system(size: 16, weight: .heavy))
+                    .multilineTextAlignment(.center)
+                    .foregroundColor(Color("mainPurple"))
+            }
+            .frame(width: 147, height: 38)
+            .background(Color("mainTextColor"))
+            .cornerRadius(50)
+            .shadow(color: .black.opacity(0.08), radius: 12, x: 0, y: 2)
+            .shadow(color: .black.opacity(0.08), radius: 1, x: 0, y: 0)
+            .overlay(
+            RoundedRectangle(cornerRadius: 50)
+            .stroke(.black, lineWidth: 1)
+            )
+        }
+        
+
+    }
+}
+
+private struct ToggleStack: View {
+    @Binding var isOn: Bool
+    let text: String
+    let onToggleAction: () -> Void
     
+    var body: some View {
+        HStack {
+            Text(text)
+                .foregroundColor(Resources.Colors.mainPurple)
+                .font(.system(size: 20, weight: .heavy))
+            Spacer()
+            Toggle("", isOn: $isOn)
+                .labelsHidden()
+                .toggleStyle(SwitchToggleStyle(tint: Resources.Colors.mainPurple))
+                .onChange(of: isOn) { newValue in
+                    onToggleAction()
+                }
+        }
+    }
+}
+
+private struct TextStack: View {
+    let text: String
+    let stackOption: TextStackOptions
+    
+    @Binding var selectedMusic: MusicType
+    @Binding var selectedTickingBomb: TickingBombMusicType
+    @Binding var selectedExplosionBomb: ExplosionBombMusicType
+    
+    var body: some View {
+        HStack {
+            Text(text)
+                .foregroundColor(Resources.Colors.mainPurple)
+                .font(.system(size: 20, weight: .heavy))
+            Spacer()
+            switch stackOption {
+            case .selectedMusic:
+                Menu(selectedMusic.rawValue) {
+                    ForEach(MusicType.allCases, id: \.self) { option in
+                        Button(action: {
+                            selectedMusic = option
+                        }) {
+                            Text(option.rawValue)
+                        }
+                    }
+                }
+                .foregroundColor(.black)
+                .font(.headline)
+            case .selectedTickingBomb:
+                Menu(selectedTickingBomb.rawValue) {
+                    ForEach(TickingBombMusicType.allCases, id: \.self) { option in
+                        Button(action: {
+                            selectedTickingBomb = option
+                        }) {
+                            Text(option.rawValue)
+                        }
+                    }
+                }
+                .foregroundColor(.black)
+                .font(.headline)
+            case .selectedExplosionBomb:
+                Menu(selectedExplosionBomb.rawValue) {
+                    ForEach(ExplosionBombMusicType.allCases, id: \.self) { option in
+                        Button(action: {
+                            selectedExplosionBomb = option
+                        }) {
+                            Text(option.rawValue)
+                        }
+                    }
+                }
+                .foregroundColor(.black)
+                .font(.headline)
+            }
+            
+        }
+    }
 }
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView(gameview: GameViewModel(), viewModel: SettingsViewModel())
+        SettingsView(viewModel: SettingsViewModel())
     }
 }

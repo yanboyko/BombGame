@@ -2,7 +2,6 @@ import SwiftUI
 import RiveRuntime
 
 struct MainView: View {
-    
     @ObservedObject var viewModel: MainViewModel
     @EnvironmentObject var animationViewModel: AnimationViewModel
     @ObservedObject var gameViewModel: GameViewModel
@@ -16,13 +15,55 @@ struct MainView: View {
     @State private var showHelpScreen = false
     @State private var showSettingsScreen = false
     
-    var startGameButton = RiveViewModel(fileName: "startgamebutton", extension: "riv", stateMachineName: "StateMachine", autoPlay: false, artboardName: "MainButton")
-    var resumeGameButton = RiveViewModel(fileName: "resumebutton", extension: "riv", stateMachineName: "StateMachine", autoPlay: false, artboardName: "MainButton")
-    var categoriesButton = RiveViewModel(fileName: "categoriesbutton", extension: "riv", stateMachineName: "StateMachine", autoPlay: false, artboardName: "MainButton")
-    var settingsbutton = RiveViewModel(fileName: "settingsbutton", extension: "riv", stateMachineName: "StateMachine", autoPlay: false, artboardName: "MainButton")
-    var helpbutton = RiveViewModel(fileName: "helpbutton", extension: "riv", stateMachineName: "StateMachine", autoPlay: false, artboardName: "MainButton")
-    var bombanimation = RiveViewModel(fileName: "bombanimation", extension: "riv", stateMachineName: "StateMachine", autoPlay: false, artboardName: "BombArtboard")
-    var bombLabel = RiveViewModel(fileName: "bomblabel1", extension: "riv", stateMachineName: "StateMachine", autoPlay: false, artboardName: "MainArtboard")
+    var startGameButton = RiveViewModel(
+        fileName: "startgamebutton",
+        extension: "riv",
+        stateMachineName: "StateMachine",
+        autoPlay: false,
+        artboardName: "MainButton"
+    )
+    var resumeGameButton = RiveViewModel(
+        fileName: "resumebutton",
+        extension: "riv",
+        stateMachineName: "StateMachine",
+        autoPlay: false,
+        artboardName: "MainButton"
+    )
+    var categoriesButton = RiveViewModel(
+        fileName: "categoriesbutton",
+        extension: "riv",
+        stateMachineName: "StateMachine",
+        autoPlay: false,
+        artboardName: "MainButton"
+    )
+    var settingsbutton = RiveViewModel(
+        fileName: "settingsbutton",
+        extension: "riv",
+        stateMachineName: "StateMachine",
+        autoPlay: false,
+        artboardName: "MainButton"
+    )
+    var helpbutton = RiveViewModel(
+        fileName: "helpbutton",
+        extension: "riv",
+        stateMachineName: "StateMachine",
+        autoPlay: false,
+        artboardName: "MainButton"
+    )
+    var bombanimation = RiveViewModel(
+        fileName: "bombanimation",
+        extension: "riv",
+        stateMachineName: "StateMachine",
+        autoPlay: false,
+        artboardName: "BombArtboard"
+    )
+    var bombLabel = RiveViewModel(
+        fileName: "bomblabel1",
+        extension: "riv",
+        stateMachineName: "StateMachine",
+        autoPlay: false,
+        artboardName: "MainArtboard"
+    )
     
     @State private var startGameButtonIsPressed = false
     @State private var resumeGameButtonIsPressed = false
@@ -241,7 +282,7 @@ struct MainView: View {
                 ))
             .background(
                 NavigationLink(
-                    destination: SettingsView(gameview: GameViewModel(), viewModel: SettingsViewModel()),
+                    destination: SettingsView(viewModel: SettingsViewModel()),
                     isActive: $showSettingsScreen,
                     label: { EmptyView() }
                 ))
