@@ -43,15 +43,18 @@ struct PunishmentView: View {
                     }
                 }
                 .padding(.horizontal)
-
-                Text("Проигравший выполняет задание")
-                    .font(.system(size: 28, weight: .bold))
-                    .foregroundColor(.black)
-                    .multilineTextAlignment(.center)
-                    .padding(.horizontal)
-
+                if viewModel.isPunishmentNeeded {
+                    Text("Проигравший выполняет задание")
+                        .font(.system(size: 28, weight: .bold))
+                        .foregroundColor(.black)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal)
+                }
+                if !viewModel.isPunishmentNeeded {
+                    Spacer()
+                }
                 Image(Resources.Image.punishment)
-
+                if viewModel.isPunishmentNeeded {
                 Text(viewModel.punishment.text)
                     .font(.system(size: 24, weight: .bold))
                     .lineLimit(3)
@@ -59,14 +62,17 @@ struct PunishmentView: View {
                     .foregroundColor(Resources.Colors.mainPurple)
                     .multilineTextAlignment(.center)
                     .padding()
-
-                ActionButton(text: $anotherQuestionButtonName) {
-                    withAnimation {
-                        viewModel.getAnotherQuestion()
+                
+                    ActionButton(text: $anotherQuestionButtonName) {
+                        withAnimation {
+                            viewModel.getAnotherQuestion()
+                        }
                     }
+                    .lineLimit(2)
                 }
-                .lineLimit(2)
-
+                if !viewModel.isPunishmentNeeded {
+                    Spacer()
+                }
                 ActionButton(text: $startAgainButtonName) {
                     onStartAgain?()
                     dismiss()
