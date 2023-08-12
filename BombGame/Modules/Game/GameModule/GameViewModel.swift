@@ -59,13 +59,23 @@ final class GameViewModel: ObservableObject {
     
     func setRandomQuestion()  {
         if currentGame != nil {
-            self.currentGame?.currentQuestion = QuizQuestion.getRandomQuestion(categories: [.aboutLife])
+            self.currentGame?.currentQuestion = QuizQuestion.getRandomQuestion(categories: fetchCategories())
         } else {
             currentGame = GameModel(
-                currentQuestion: QuizQuestion.getRandomQuestion(categories: [.aboutLife]),
+                currentQuestion: QuizQuestion.getRandomQuestion(categories: fetchCategories()),
                 timeLeft: settings?.time.rawValue ?? 20
             )
         }
+    }
+    
+    private func fetchCategories() -> [QuestionsBox.CategoryName] {
+        if let decoded = UserDefaults.standard.data(forKey: "SelectedCategories") {
+            if let categories = try? JSONDecoder().decode([QuestionsBox.CategoryName].self, from: decoded) {
+                return categories
+            }
+        }
+
+        return []
     }
     
     func explousionSound() {

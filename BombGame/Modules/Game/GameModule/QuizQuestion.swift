@@ -18,7 +18,6 @@ struct QuizQuestion: Codable {
             switch category {
             case .aboutLife:
                 questionArray.append(quizAboutLifeData.randomElement()!)
-               
             case .miscellaneous:
                 questionArray.append(quizAllData.randomElement()!)
             case .sportsAndHobbies:
@@ -31,6 +30,7 @@ struct QuizQuestion: Codable {
                 questionArray.append(quizNatureData.randomElement()!)
             }
         }
+
         return questionArray.randomElement()!
     }
     
