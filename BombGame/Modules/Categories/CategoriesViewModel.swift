@@ -1,47 +1,46 @@
 import Foundation
 
 final class CategoriesViewModel: ObservableObject {
-    @Published private var selectedCategories: Set<Category> = []
+    @Published var selectedCategories: Set<QuestionsBox.CategoryName> = []
     @Published var selectedQuestions: [QuestionWithCategory] = []
-    
+
+
     var questionBox = QuestionsBox()
     var maxSelectedCategories = 4
     
     // Check if a category is selected
-    func isCategorySelected(_ category: Category) -> Bool {
-        selectedCategories.contains(category)
+    func isCategorySelected(_ category: QuestionsBox.CategoryName) -> Bool {
+      selectedCategories.contains(category)
     }
     
     // Handle category selection and adding questions to the array
-    func categorySelected(_ category: Category, isSelected: Bool) {
-        guard let categoryName = QuestionsBox.CategoryName(rawValue: category.text) else { return }
+    func categorySelected(_ category: QuestionsBox.CategoryName, isSelected: Bool) {
         if isSelected {
             selectedCategories.insert(category)
-            let selectedQuestionsForCategory = questionBox.selectedCategory(categoryName: category.text)
+            let selectedQuestionsForCategory = questionBox.questionsAndCategories
             selectedQuestions.append(contentsOf: selectedQuestionsForCategory)
             print("categories count \(selectedCategories.count)")
-            
+
         } else {
             selectedCategories.remove(category)
-            selectedQuestions.removeAll { $0.category == categoryName }
+            selectedQuestions.removeAll { $0.category == category }
             print("categories count \(selectedCategories.count)")
         }
-        let randomQuestionText = selectedQuestions.randomElement()?.text ?? "тут должен был быть случайный вопрос"
-        print("random question is \(randomQuestionText)")
+        
+        saveCategories(categories: Array(selectedCategories))
     }
 
     func viewDissapeared() {
-        let categories: [QuestionsBox.CategoryName] = selectedQuestions
-            .reduce(into: []) { array, question in
-                if !array.contains(question.category) {
-                    array.append(question.category)
-                }
-            }
-
+        let categories = Array(selectedCategories)
         saveCategories(categories: categories)
     }
 
-    private func saveCategories(categories: [QuestionsBox.CategoryName]) {
+    func viewAppeared() {
+        let fetchedCategories: [QuestionsBox.CategoryName] = fetchCategories()
+        self.selectedCategories = Set(fetchedCategories)
+    }
+
+    func saveCategories(categories: [QuestionsBox.CategoryName]) {
         if let encoded = try? JSONEncoder().encode(categories) {
             UserDefaults.standard.set(encoded, forKey: "SelectedCategories")
         }
