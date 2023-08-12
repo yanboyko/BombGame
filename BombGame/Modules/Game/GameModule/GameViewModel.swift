@@ -158,12 +158,12 @@ final class GameViewModel: ObservableObject {
         
         let tickMusic: URL?
         
-        switch settings.backgroundMusicType {
-        case .melodyOne:
+        switch settings.tickingBomb {
+        case .tickOne:
             tickMusic = Bundle.main.url(forResource: "Часы 1", withExtension: "mp3")
-        case .melodyTwo:
+        case .tickTwo:
             tickMusic = Bundle.main.url(forResource: "Часы 2", withExtension: "mp3")
-        case .melodyThree:
+        case .tickThree:
             tickMusic = Bundle.main.url(forResource: "Часы 3", withExtension: "mp3")
         }
         
