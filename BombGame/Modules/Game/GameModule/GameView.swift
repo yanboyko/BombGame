@@ -6,11 +6,9 @@ struct GameView: View {
   
     @State var startButtonName = Resources.Text.startButtonName
     @State var stopButtonName = Resources.Text.stopButtonName
-    @State var pauseGameView = false
     @State var startStopButtonVisible = true
     @State var showGameScreen = false
-   // @State private var currentQuestion: QuizQuestion?
-    
+
     @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
@@ -40,7 +38,7 @@ struct GameView: View {
                             Button {
                                 viewModel.pauseGame()
                             } label: {
-                                if viewModel.isGamePaused {
+                                if !viewModel.isGameOnPause {
                                     Image(systemName:"pause.circle")
                                 } else {
                                     Image(systemName:"play.circle")
@@ -63,7 +61,7 @@ struct GameView: View {
                             .font(.system(size: 28, weight: .bold))
                             .foregroundColor(Resources.Colors.mainPurple)
                     } else {
-                        if viewModel.isGamePaused {
+                        if !viewModel.isGameOnPause {
                             Text(viewModel.currentGame?.currentQuestion.question ?? "")
                                 .multilineTextAlignment(.center)
                                 .font(.system(size: 28, weight: .bold))
@@ -84,10 +82,13 @@ struct GameView: View {
                     
                     if startStopButtonVisible {
                         ActionButton(text: $startButtonName) {
-                            viewModel.timerValue = 20
-                            viewModel.playBackgroundMusic()
+//                            viewModel.timerValue = 20
+//                            viewModel.playBackgroundMusic()
+//                            startStopButtonVisible = false
+//                            viewModel.startGame()
+                            viewModel.initilizeGame()
+                          //  viewModel.startGame()
                             startStopButtonVisible = false
-                            viewModel.startGame()
                         }
                     }
                 }

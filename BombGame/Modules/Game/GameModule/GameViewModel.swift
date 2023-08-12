@@ -3,11 +3,8 @@ import AVFoundation
 
 final class GameViewModel: ObservableObject {
     
-    @Published var isGameRunning = false
     @Published var timerValue = 0
-    @Published var isMusicPlaying = false
-    @Published var isMusicPlayingw = false
-    @Published var isGamePaused = true
+    @Published var isGameOnPause = false
     @Published var timerEnded = false
     
     var audioPlayer: AVAudioPlayer?
@@ -54,7 +51,6 @@ final class GameViewModel: ObservableObject {
         do {
             audioPlayer = try AVAudioPlayer(contentsOf: musicUrlw)
             audioPlayer?.play()
-            isMusicPlayingw = true
         } catch {
             print("Failed to play ending music: \(error.localizedDescription)")
         }
@@ -65,14 +61,13 @@ final class GameViewModel: ObservableObject {
             fatalError()
         }
         saveGame(currentGame)
-        isGamePaused.toggle()
+        isGameOnPause.toggle()
 
-        if isGamePaused {
+        if !isGameOnPause {
             startGame()
         } else {
             stopGame()
         }
-        
     }
     
     func playBackgroundMusic() {
@@ -84,7 +79,6 @@ final class GameViewModel: ObservableObject {
         do {
             audioPlayer = try AVAudioPlayer(contentsOf: musicUrl)
             audioPlayer?.play()
-            isMusicPlaying = true
         } catch {
             print("Failed to play background music: \(error.localizedDescription)")
         }
@@ -93,6 +87,8 @@ final class GameViewModel: ObservableObject {
     func gameViewDissapear() {
         guard let currentGame else { return }
         saveGame(currentGame)
+        isGameOnPause = false
+        stopGame()
         self.currentGame = nil
     }
 
@@ -126,40 +122,40 @@ final class GameViewModel: ObservableObject {
         }
     }
     
-    func startGame() {
-        guard !isGameRunning else { return }
-        if currentGame == nil {
-            prepareGame()
-        }
-        
-        isGameRunning = true
-        
+    private func configureTimer() {
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
             guard let self = self else { return }
             if self.timerValue > 0 {
                 self.timerValue -= 1
                 self.audioPlayer?.play()
-                self.isMusicPlaying.toggle()
-                self.isMusicPlayingw = false
             } else {
                 self.audioPlayer?.stop()
-                self.isMusicPlaying = false
                 self.stopGame()
-                if !self.isMusicPlayingw {
-                    self.explousionSound()
-                    self.isMusicPlayingw = true
-                    self.timerEnded = true
-                }
+                self.explousionSound()
+                self.timerEnded = true
             }
+            self.currentGame?.timeLeft = self.timerValue
         }
+    }
+
+    func startGame() {
+        guard !isGameOnPause else { return }
+        configureTimer()
+    }
+
+    func initilizeGame() {
+        if currentGame == nil {
+            prepareGame()
+        }
+        timerValue = currentGame?.timeLeft ?? 20
+        playBackgroundMusic()
+        startGame()
     }
 
     func stopGame() {
         audioPlayer?.pause()
-        isMusicPlaying = false
         timer?.invalidate()
         timer = nil
-        isGameRunning = false
     }
     
 }
