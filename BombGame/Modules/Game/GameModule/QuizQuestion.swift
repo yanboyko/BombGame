@@ -11,18 +11,57 @@ struct QuizQuestion: Codable {
     let category: QuestionsBox.CategoryName
     let question: String
   
+    
     static func getRandomQuestion(categories: [QuestionsBox.CategoryName]) -> QuizQuestion {
-        QuizQuestion.quizData.randomElement() ?? QuizQuestion(category: .aboutLife, question: "Не удалось сгенерировать вопрос")
+        var questionArray: [QuizQuestion] = []
+        for category in categories {
+            switch category {
+            case .aboutLife:
+                questionArray.append(quizAboutLifeData.randomElement()!)
+               
+            case .miscellaneous:
+                questionArray.append(quizAllData.randomElement()!)
+            case .sportsAndHobbies:
+                questionArray.append(quizSportsAndHobbiesData.randomElement()!)
+            case .celebrities:
+                questionArray.append(quizCelebretiesData.randomElement()!)
+            case .artsAndCinema:
+                questionArray.append(quizArtsandCinemaData.randomElement()!)
+            case .nature:
+                questionArray.append(quizNatureData.randomElement()!)
+            }
+        }
+        return questionArray.randomElement()!
     }
-  
-    static let quizData: [QuizQuestion] = [
+    
+    static let quizAllData: [QuizQuestion] = [
+        QuizQuestion(category: .miscellaneous, question: "Назовите актеров Форсажа")
+    ]
+    static let quizAboutLifeData: [QuizQuestion] = [
         QuizQuestion(category: .aboutLife, question: "Сколько раз нужно посолить суп?"),
         QuizQuestion(category: .aboutLife, question: "Сколько нужно яиц для омлета?"),
         QuizQuestion(category: .aboutLife, question: "Назовите 5 ютуб-блогеров"),
-        
-        QuizQuestion(category: .celebrities, question: "Назовите актеров Форсажа"),
+    ]
+    static let quizArtsandCinemaData: [QuizQuestion] = [
+       
         QuizQuestion(category: .artsAndCinema, question: "Назовите фильмы Нолана"),
+    ]
+    
+    
+    static let quizCelebretiesData: [QuizQuestion] = [
+        QuizQuestion(category: .celebrities, question: "Назовите актеров Форсажа")
+    ]
+    static let quizNatureData: [QuizQuestion] = [
         QuizQuestion(category: .nature, question: "Какие дерувья ростут в Африке"),
+    ]
+    
+
+    static let quizSportsAndHobbiesData: [QuizQuestion] = [
+       
+        
+        
+        
+        
         QuizQuestion(category: .sportsAndHobbies, question: "Какое ваше любимое спортивное мероприятие?"),
         QuizQuestion(category: .sportsAndHobbies, question: "Какие спортивные игры вы любите играть?"),
         QuizQuestion(category: .sportsAndHobbies, question: "Какой ваш любимый вид спорта для просмотра?"),
@@ -44,3 +83,4 @@ struct QuizQuestion: Codable {
         QuizQuestion(category: .sportsAndHobbies, question: "Назовите 3 струнных музыкальных инструмента")
     ]
 }
+
