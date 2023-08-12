@@ -52,16 +52,11 @@ struct QuizQuestion: Codable {
         QuizQuestion(category: .celebrities, question: "Назовите актеров Форсажа")
     ]
     static let quizNatureData: [QuizQuestion] = [
-        QuizQuestion(category: .nature, question: "Какие дерувья ростут в Африке"),
+        QuizQuestion(category: .nature, question: "Какие дерувья растут в Африке"),
     ]
     
 
     static let quizSportsAndHobbiesData: [QuizQuestion] = [
-       
-        
-        
-        
-        
         QuizQuestion(category: .sportsAndHobbies, question: "Какое ваше любимое спортивное мероприятие?"),
         QuizQuestion(category: .sportsAndHobbies, question: "Какие спортивные игры вы любите играть?"),
         QuizQuestion(category: .sportsAndHobbies, question: "Какой ваш любимый вид спорта для просмотра?"),
