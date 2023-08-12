@@ -7,12 +7,12 @@
 
 import Foundation
 
-struct QuizQuestion {
+struct QuizQuestion: Codable {
     let category: QuestionsBox.CategoryName
     let question: String
   
     static func getRandomQuestion() -> QuizQuestion {
-        QuizQuestion.quizData.randomElement() ?? QuizQuestion(category: "", question: "")
+        QuizQuestion.quizData.randomElement() ?? QuizQuestion(category: .aboutLife, question: "Не удалось сгенерировать вопрос")
     }
   
     static let quizData: [QuizQuestion] = [

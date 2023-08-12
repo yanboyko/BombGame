@@ -36,7 +36,7 @@ struct QuestionsBox {
         QuestionWithCategory(text: "Football", category: .sportsAndHobbies),
     ]
     
-    enum CategoryName: String {
+    enum CategoryName: String, CaseIterable, Codable {
         case miscellaneous = "О Разном"
         case sportsAndHobbies = "Спорт и Хобби"
         case aboutLife = "Про Жизнь"
