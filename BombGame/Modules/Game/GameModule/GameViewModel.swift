@@ -59,10 +59,10 @@ final class GameViewModel: ObservableObject {
     
     func setRandomQuestion()  {
         if currentGame != nil {
-            self.currentGame?.currentQuestion = QuizQuestion.getRandomQuestion(category: .aboutLife)
+            self.currentGame?.currentQuestion = QuizQuestion.getRandomQuestion(categories: [.aboutLife])
         } else {
             currentGame = GameModel(
-                currentQuestion: QuizQuestion.getRandomQuestion(category: .aboutLife),
+                currentQuestion: QuizQuestion.getRandomQuestion(categories: [.aboutLife]),
                 timeLeft: settings?.time.rawValue ?? 20
             )
         }
