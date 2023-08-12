@@ -5,8 +5,8 @@ final class GameViewModel: ObservableObject {
     
     @Published var isGameRunning = false
     @Published var timerValue = 0
-    @Published var isMusicPlaying = false
-    @Published var isMusicPlayingw = false
+    @Published var backGroundMusicPlaying = false
+    @Published var explousionBlasting = false
     @Published var pauseGame = true
     @Published var timerEnded = false
     
@@ -17,21 +17,21 @@ final class GameViewModel: ObservableObject {
     }
     
     func explousionSound() {
-        guard let musicUrlw = Bundle.main.url(forResource: "explousion", withExtension: "wav") else {
+        guard let explousionBlast = Bundle.main.url(forResource: "Взрыв 1", withExtension: "mp3") else {
             print("Failed to find the ending music file.")
             return
         }
         
         do {
-            audioPlayer = try AVAudioPlayer(contentsOf: musicUrlw)
+            audioPlayer = try AVAudioPlayer(contentsOf: explousionBlast)
             audioPlayer?.play()
-            isMusicPlayingw = true
+            explousionBlasting = true
         } catch {
             print("Failed to play ending music: \(error.localizedDescription)")
         }
     }
     
-    func tpauseGame() {
+    func pausingGame() {
         pauseGame.toggle()
         if pauseGame{
             startGame()
@@ -45,15 +45,15 @@ final class GameViewModel: ObservableObject {
     
     
     func playBackgroundMusic() {
-        guard let musicUrl = Bundle.main.url(forResource: "Audio1", withExtension: "mp3") else {
+        guard let backGroundMusic = Bundle.main.url(forResource: "Мелодия 1", withExtension: "mp3") else {
             print("Failed to find the background music file.")
             return
         }
         
         do {
-            audioPlayer = try AVAudioPlayer(contentsOf: musicUrl)
+            audioPlayer = try AVAudioPlayer(contentsOf: backGroundMusic)
             audioPlayer?.play()
-            isMusicPlaying = true
+            backGroundMusicPlaying = true
         } catch {
             print("Failed to play background music: \(error.localizedDescription)")
         }
@@ -72,16 +72,16 @@ final class GameViewModel: ObservableObject {
             if self.timerValue > 0 {
                 self.timerValue -= 1
                 self.audioPlayer?.play()
-                self.isMusicPlaying.toggle()
-                isMusicPlayingw = false
+                self.backGroundMusicPlaying.toggle()
+                explousionBlasting = false
                 
             } else {
                 self.audioPlayer?.stop()
-                self.isMusicPlaying = false
+                self.backGroundMusicPlaying = false
                 stopGame()
-                if !self.isMusicPlayingw {
+                if !self.explousionBlasting {
                     self.explousionSound()
-                    self.isMusicPlayingw = true
+                    self.explousionBlasting = true
                     self.timerEnded = true
                    
                     
@@ -92,7 +92,7 @@ final class GameViewModel: ObservableObject {
     }
     func stopGame() {
         audioPlayer?.pause()
-        isMusicPlaying = false
+        backGroundMusicPlaying = false
         timer?.invalidate()
         timer = nil
         isGameRunning = false
