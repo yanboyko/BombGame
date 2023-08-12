@@ -142,8 +142,10 @@ final class GameViewModel: ObservableObject {
         }
         
         do {
-            backgroundAudioPlayer = try AVAudioPlayer(contentsOf: backGroundMusic)
-            backgroundAudioPlayer?.play()
+            if settings.isBackgroundMusic {
+                backgroundAudioPlayer = try AVAudioPlayer(contentsOf: backGroundMusic)
+                backgroundAudioPlayer?.play()
+            }
         } catch {
             print("Failed to play background music: \(error.localizedDescription)")
         }

@@ -72,10 +72,10 @@ struct GameView: View {
                         }
                     }
                     
-//                    if !animationViewModel.addAnimation {
-//                        Image(Resources.Image.bomb)
-//                            .padding(.leading)
-//                    } else {
+                    if !animationViewModel.addAnimation {
+                        Image(Resources.Image.bomb)
+                            .padding(.leading)
+                    } else {
                         VStack {
                             bombanimation.view()
                         }
@@ -83,7 +83,7 @@ struct GameView: View {
                         .onAppear {
                             bombanimation.setInput("timeline", value: 1.0)
                         }
-//                    }
+                    }
 
                     Spacer()
                     if startStopButtonVisible {
