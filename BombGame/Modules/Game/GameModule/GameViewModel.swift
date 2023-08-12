@@ -43,13 +43,13 @@ final class GameViewModel: ObservableObject {
     }
     
     func explousionSound() {
-        guard let musicUrlw = Bundle.main.url(forResource: "explousion", withExtension: "wav") else {
+        guard let explousionBlast = Bundle.main.url(forResource: "Взрыв 1", withExtension: "mp3") else {
             print("Failed to find the ending music file.")
             return
         }
         
         do {
-            audioPlayer = try AVAudioPlayer(contentsOf: musicUrlw)
+            audioPlayer = try AVAudioPlayer(contentsOf: explousionBlast)
             audioPlayer?.play()
         } catch {
             print("Failed to play ending music: \(error.localizedDescription)")
@@ -71,13 +71,13 @@ final class GameViewModel: ObservableObject {
     }
     
     func playBackgroundMusic() {
-        guard let musicUrl = Bundle.main.url(forResource: "Audio1", withExtension: "mp3") else {
+        guard let backGroundMusic = Bundle.main.url(forResource: "Мелодия 1", withExtension: "mp3") else {
             print("Failed to find the background music file.")
             return
         }
         
         do {
-            audioPlayer = try AVAudioPlayer(contentsOf: musicUrl)
+            audioPlayer = try AVAudioPlayer(contentsOf: backGroundMusic)
             audioPlayer?.play()
         } catch {
             print("Failed to play background music: \(error.localizedDescription)")
