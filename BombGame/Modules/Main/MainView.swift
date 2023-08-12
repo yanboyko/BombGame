@@ -261,6 +261,9 @@ struct MainView: View {
                         }
                     }
                 }
+                .onAppear {
+                    viewModel.addCategoriesIfNeeded()
+                }
             }
             .background(
                 NavigationLink(

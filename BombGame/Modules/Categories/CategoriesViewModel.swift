@@ -1,7 +1,7 @@
 import Foundation
 
 final class CategoriesViewModel: ObservableObject {
-    @Published var selectedCategories: Set<QuestionsBox.CategoryName> = []
+    @Published var selectedCategories: Set<QuestionsBox.CategoryName> = [.aboutLife, .artsAndCinema, .celebrities, .miscellaneous, .nature, .sportsAndHobbies]
     @Published var selectedQuestions: [QuestionWithCategory] = []
 
 
@@ -40,7 +40,9 @@ final class CategoriesViewModel: ObservableObject {
 
     func viewAppeared() {
         let fetchedCategories: [QuestionsBox.CategoryName] = fetchCategories()
-        self.selectedCategories = Set(fetchedCategories)
+        if !fetchedCategories.isEmpty {
+            self.selectedCategories = Set(fetchedCategories)
+        }
     }
 
     func saveCategories(categories: [QuestionsBox.CategoryName]) {

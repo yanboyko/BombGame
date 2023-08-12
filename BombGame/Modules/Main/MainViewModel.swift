@@ -33,4 +33,22 @@ final class MainViewModel: ObservableObject {
 
         return nil
     }
+    
+    func addCategoriesIfNeeded() {
+        if let decoded = UserDefaults.standard.data(forKey: "SelectedCategories") {
+            if let categories = try? JSONDecoder().decode([QuestionsBox.CategoryName].self, from: decoded) {
+                if categories.isEmpty {
+                    let newCategories: [QuestionsBox.CategoryName] = [.aboutLife, .artsAndCinema, .celebrities, .miscellaneous, .nature, .sportsAndHobbies]
+                    if let encoded = try? JSONEncoder().encode(newCategories) {
+                        UserDefaults.standard.set(encoded, forKey: "SelectedCategories")
+                    }
+                }
+            }
+        } else {
+            let newCategories: [QuestionsBox.CategoryName] = [.aboutLife, .artsAndCinema, .celebrities, .miscellaneous, .nature, .sportsAndHobbies]
+            if let encoded = try? JSONEncoder().encode(newCategories) {
+                UserDefaults.standard.set(encoded, forKey: "SelectedCategories")
+            }
+        }
+    }
 }
