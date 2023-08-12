@@ -10,7 +10,11 @@ import Foundation
 struct QuizQuestion {
     let category: QuestionsBox.CategoryName
     let question: String
-    
+  
+    static func getRandomQuestion() -> QuizQuestion {
+        QuizQuestion.quizData.randomElement() ?? QuizQuestion(category: "", question: "")
+    }
+  
     static let quizData: [QuizQuestion] = [
         QuizQuestion(category: .aboutLife, question: "Сколько раз нужно посолить суп?"),
         QuizQuestion(category: .aboutLife, question: "Сколько нужно яиц для омлета?"),
@@ -40,5 +44,3 @@ struct QuizQuestion {
         QuizQuestion(category: .sportsAndHobbies, question: "Назовите 3 струнных музыкальных инструмента")
     ]
 }
-
-
