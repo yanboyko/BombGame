@@ -6,11 +6,11 @@ enum TextStackOptions {
     case selectedExplosionBomb
 }
 
-enum TimeButtonType: Codable {
-    case short
-    case average
-    case long
-    case random
+enum TimeButtonType: Int, Codable {
+    case short = 10
+    case average = 20
+    case long = 45
+    case random = 30
 }
 
 enum MusicType: String, CaseIterable, Codable {
@@ -67,6 +67,8 @@ final class SettingsViewModel: ObservableObject {
         if let encodedData = try? JSONEncoder().encode(settings) {
             defaults.set(encodedData, forKey: "settings")
         }
+        
+        print(settings.time.rawValue)
     }
     
     func loadSettings() {

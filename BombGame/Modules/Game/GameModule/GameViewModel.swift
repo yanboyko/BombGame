@@ -2,16 +2,19 @@ import Foundation
 import AVFoundation
 
 final class GameViewModel: ObservableObject {
-    
+    private var defaults = UserDefaults.standard
     @Published var timerValue = 0
     @Published var isGameOnPause = false
     @Published var timerEnded = false
     
-    var audioPlayer: AVAudioPlayer?
+    var backgroundAudioPlayer: AVAudioPlayer?
+    var tickAudioPlayer: AVAudioPlayer?
 
     @Published var currentGame: GameModel?
 
     var isFreshGame: Bool
+    
+    var settings: SettingsModel?
 
     init(
         isFreshGame: Bool,
@@ -19,11 +22,27 @@ final class GameViewModel: ObservableObject {
     ) {
         self.isFreshGame = isFreshGame
         self.currentGame = currentGame
+        
+        setupSettings()
+    }
+    
+    private func setupSettings() {
+        settings = loadSettings()
+    }
+    
+    private func loadSettings() -> SettingsModel? {
+        if let savedData = defaults.data(forKey: "settings") {
+            if let settings = try? JSONDecoder().decode(SettingsModel.self, from: savedData) {
+                return settings
+            }
+        }
+        
+        return nil
     }
 
     func updateGame() {
         timerEnded = false
-        timerValue = 20
+        timerValue = settings?.time.rawValue ?? 20
         if isFreshGame {
             setRandomQuestion()
             return
@@ -42,19 +61,34 @@ final class GameViewModel: ObservableObject {
         if currentGame != nil {
             self.currentGame?.currentQuestion = QuizQuestion.getRandomQuestion()
         } else {
-            currentGame = GameModel(currentQuestion: QuizQuestion.getRandomQuestion(), timeLeft: 20)
+            currentGame = GameModel(currentQuestion: QuizQuestion.getRandomQuestion(), timeLeft: settings?.time.rawValue ?? 20)
         }
     }
     
     func explousionSound() {
-        guard let explousionBlast = Bundle.main.url(forResource: "Взрыв 1", withExtension: "mp3") else {
-            print("Failed to find the ending music file.")
+        guard let settings else {
+            return
+        }
+        
+        let explousionBlast: URL?
+        
+        switch settings.explosionBomb {
+        case .explosionOne:
+            explousionBlast = Bundle.main.url(forResource: "Взрыв 1", withExtension: "mp3")
+        case .explosionTwo:
+            explousionBlast = Bundle.main.url(forResource: "Взрыв 2", withExtension: "mp3")
+        case .explosionThree:
+            explousionBlast = Bundle.main.url(forResource: "Взрыв 3", withExtension: "mp3")
+        }
+        
+        guard let explousionBlast else {
             return
         }
         
         do {
-            audioPlayer = try AVAudioPlayer(contentsOf: explousionBlast)
-            audioPlayer?.play()
+            backgroundAudioPlayer = try AVAudioPlayer(contentsOf: explousionBlast)
+            tickAudioPlayer?.stop()
+            backgroundAudioPlayer?.play()
         } catch {
             print("Failed to play ending music: \(error.localizedDescription)")
         }
@@ -75,14 +109,56 @@ final class GameViewModel: ObservableObject {
     }
     
     func playBackgroundMusic() {
-        guard let backGroundMusic = Bundle.main.url(forResource: "Мелодия 1", withExtension: "mp3") else {
-            print("Failed to find the background music file.")
+        guard let settings else {
+            return
+        }
+        
+        let backGroundMusic: URL?
+        
+        switch settings.backgroundMusicType {
+        case .melodyOne:
+            backGroundMusic = Bundle.main.url(forResource: "Мелодия 1", withExtension: "mp3")
+        case .melodyTwo:
+            backGroundMusic = Bundle.main.url(forResource: "Мелодия 2", withExtension: "mp3")
+        case .melodyThree:
+            backGroundMusic = Bundle.main.url(forResource: "Мелодия 3", withExtension: "mp3")
+        }
+        
+        guard let backGroundMusic else {
             return
         }
         
         do {
-            audioPlayer = try AVAudioPlayer(contentsOf: backGroundMusic)
-            audioPlayer?.play()
+            backgroundAudioPlayer = try AVAudioPlayer(contentsOf: backGroundMusic)
+            backgroundAudioPlayer?.play()
+        } catch {
+            print("Failed to play background music: \(error.localizedDescription)")
+        }
+    }
+    
+    func playTickSound() {
+        guard let settings else {
+            return
+        }
+        
+        let tickMusic: URL?
+        
+        switch settings.backgroundMusicType {
+        case .melodyOne:
+            tickMusic = Bundle.main.url(forResource: "Часы 1", withExtension: "mp3")
+        case .melodyTwo:
+            tickMusic = Bundle.main.url(forResource: "Часы 2", withExtension: "mp3")
+        case .melodyThree:
+            tickMusic = Bundle.main.url(forResource: "Часы 3", withExtension: "mp3")
+        }
+        
+        guard let tickMusic else {
+            return
+        }
+        
+        do {
+            tickAudioPlayer = try AVAudioPlayer(contentsOf: tickMusic)
+            tickAudioPlayer?.play()
         } catch {
             print("Failed to play background music: \(error.localizedDescription)")
         }
@@ -131,9 +207,11 @@ final class GameViewModel: ObservableObject {
             guard let self = self else { return }
             if self.timerValue > 0 {
                 self.timerValue -= 1
-                self.audioPlayer?.play()
+                self.backgroundAudioPlayer?.play()
+                self.tickAudioPlayer?.play()
             } else {
-                self.audioPlayer?.stop()
+                self.backgroundAudioPlayer?.stop()
+                self.tickAudioPlayer?.stop()
                 self.stopGame()
                 self.explousionSound()
                 self.timerEnded = true
@@ -153,11 +231,13 @@ final class GameViewModel: ObservableObject {
         }
         timerValue = currentGame?.timeLeft ?? 20
         playBackgroundMusic()
+        playTickSound()
         startGame()
     }
 
     func stopGame() {
-        audioPlayer?.pause()
+        backgroundAudioPlayer?.pause()
+        tickAudioPlayer?.pause()
         timer?.invalidate()
         timer = nil
     }
