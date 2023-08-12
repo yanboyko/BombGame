@@ -5,6 +5,8 @@ struct SettingsView: View {
     @EnvironmentObject var animationViewModel: AnimationViewModel
     @Environment(\.presentationMode) var presentationMode
     
+    @State private var oldAnimation = false
+    
     var body: some View {
         ZStack {
             BackgroundView()
@@ -49,14 +51,29 @@ struct SettingsView: View {
                     selectedTickingBomb: $viewModel.selectedTickingBomb,
                     selectedExplosionBomb: $viewModel.selectedExplosionBomb
                 )
-                ToggleStack(
-                    isOn: $viewModel.isAnimation,
-                    text: "Анимация",
-                    onToggleAction: {
-                        viewModel.isAnimation.toggle()
-                        animationViewModel.turnAnimation()
-                    }
-                )
+//                ToggleStack(
+//                    isOn: $viewModel.isAnimation,
+//                    text: "Анимация",
+//                    onToggleAction: {
+//                        viewModel.isAnimation.toggle()
+//                        animationViewModel.turnAnimation()
+//                    }
+//                )
+                
+                HStack {
+                    Text("Анимация")
+                        .foregroundColor(Resources.Colors.mainPurple)
+                        .font(.system(size: 20, weight: .heavy))
+                    Spacer()
+                    Toggle("", isOn: $oldAnimation)
+                        .labelsHidden()
+                        .toggleStyle(SwitchToggleStyle(tint: Resources.Colors.mainPurple))
+                        .onChange(of: oldAnimation) { newValue in
+                            viewModel.isAnimation.toggle()
+                            animationViewModel.turnAnimation()
+                        }
+                }
+                
                 Spacer()
             }
             .padding()
