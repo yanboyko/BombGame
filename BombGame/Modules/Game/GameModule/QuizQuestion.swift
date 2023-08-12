@@ -11,7 +11,7 @@ struct QuizQuestion: Codable {
     let category: QuestionsBox.CategoryName
     let question: String
   
-    static func getRandomQuestion() -> QuizQuestion {
+    static func getRandomQuestion(category: QuestionsBox.CategoryName) -> QuizQuestion {
         QuizQuestion.quizData.randomElement() ?? QuizQuestion(category: .aboutLife, question: "Не удалось сгенерировать вопрос")
     }
   
