@@ -9,9 +9,12 @@ import SwiftUI
 
 struct PunishmentView: View {
     @ObservedObject var viewModel: PunishmentViewModel
+    @Environment(\.dismiss) var dismiss
    
     @State var startAgainButtonName = "Начать \n заново"
     @State var anotherQuestionButtonName = "Другоe \n задание"
+
+    var onStartAgain: (() -> Void)?
     
     @Environment(\.presentationMode) var presentationMode
 
@@ -65,7 +68,8 @@ struct PunishmentView: View {
                 .lineLimit(2)
 
                 ActionButton(text: $startAgainButtonName) {
-                    viewModel.restartGame()
+                    onStartAgain?()
+                    dismiss()
                 }
             }
         }
