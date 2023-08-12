@@ -2,16 +2,18 @@ import SwiftUI
 import RiveRuntime
 
 struct MainView: View {
-    @ObservedObject var viewModel: MainViewModel
+    
+//    @ObservedObject var viewModel: MainViewModel
     @EnvironmentObject var animationViewModel: AnimationViewModel
-    @ObservedObject var gameViewModel: GameViewModel
+   // @ObservedObject var gameViewModel: GameViewModel
     
     @State private var startGame = Resources.Text.startGame
     @State private var proceedGame = Resources.Text.proceedGame
     @State private var categories = Resources.Text.categories
     
     @State private var showCategoriesScreen = false
-    @State private var showGameScreen = false
+    @State private var showGameContinue = false
+    @State private var showNewGame = false
     @State private var showHelpScreen = false
     @State private var showSettingsScreen = false
     
@@ -125,20 +127,16 @@ struct MainView: View {
                         
                         if !animationViewModel.addAnimation {
                             VStack {
-                                ActionButton(text: $startGame, onTapAction: {
-                                    showGameScreen = true
-                                    gameViewModel.explousionBlasting = false
-                                    
-                                   
-                                    
-                                })
+                                ActionButton(text: $startGame) {
+                                    showNewGame = true
+                                }
                                 
-                                ActionButton(text: $proceedGame, onTapAction: {
-                                   
-                                    
-                                })
+                                ActionButton(text: $proceedGame) {
+                                    showGameContinue = true
+                                    resumeGameButtonIsPressed = true
+                                }
                                 
-                                             
+
                                 ActionButton(text: $categories, onTapAction: {
                                     showCategoriesScreen = true }
                                 )
@@ -160,7 +158,7 @@ struct MainView: View {
                                             startGameButtonIsPressed = false
                                         }
                                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-                                            showGameScreen = true
+                                            showGameContinue = true
                                         }
                                     }
                                 
@@ -179,7 +177,7 @@ struct MainView: View {
                                         }
                                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
                                             // Условия для кнопки продолжить
-                                            showGameScreen = true
+                                            showGameContinue = true
                                         }
                                     }
                                 
@@ -270,8 +268,14 @@ struct MainView: View {
                 ))
             .background(
                 NavigationLink(
-                    destination: GameView(viewModel: GameViewModel()),
-                    isActive: $showGameScreen,
+                    destination: GameView(viewModel: GameViewModel(isFreshGame: false)),
+                    isActive: $showGameContinue,
+                    label: { EmptyView() }
+                ))
+            .background(
+                NavigationLink(
+                    destination: GameView(viewModel: GameViewModel(isFreshGame: true)),
+                    isActive: $showNewGame,
                     label: { EmptyView() }
                 ))
             .background(
@@ -282,7 +286,8 @@ struct MainView: View {
                 ))
             .background(
                 NavigationLink(
-                    destination: SettingsView(viewModel: SettingsViewModel()),
+                    destination: SettingsView(gameview: GameViewModel(isFreshGame: !resumeGameButtonIsPressed), viewModel: SettingsViewModel()),
+
                     isActive: $showSettingsScreen,
                     label: { EmptyView() }
                 ))
@@ -291,10 +296,10 @@ struct MainView: View {
 }
 
 
-struct MainView_Previews: PreviewProvider {
-    static var previews: some View {
-        MainView(viewModel: MainViewModel(), gameViewModel: GameViewModel())
-            .environmentObject(AnimationViewModel())
-            
-    }
-}
+//struct MainView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        MainView(viewModel: MainViewModel(), gameViewModel: GameViewModel())
+//            .environmentObject(AnimationViewModel())
+//
+//    }
+//}

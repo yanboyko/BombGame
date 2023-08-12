@@ -8,17 +8,18 @@ struct GameView: View {
     @State var stopButtonName = Resources.Text.stopButtonName
     @State var startStopButtonVisible = true
     @State var showGameScreen = false
-    @State private var currentQuestion: QuizQuestion?
-    
+
     @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
         ZStack {
             BackgroundView()
             
-            if viewModel.timerEnded{
-                
-                PunishmentView(viewModel: PunishmentViewModel())
+            if viewModel.timerEnded {
+                PunishmentView(viewModel: PunishmentViewModel()) {
+                    viewModel.isFreshGame = true
+                    viewModel.updateGame()
+                }
             } else {
                 VStack {
                     
@@ -35,9 +36,9 @@ struct GameView: View {
                         Spacer()
                         if !startStopButtonVisible {
                             Button {
-                                viewModel.pausingGame()
+                                viewModel.pauseGame()
                             } label: {
-                                if viewModel.pauseGame {
+                                if !viewModel.isGameOnPause {
                                     Image(systemName:"pause.circle")
                                 } else {
                                     Image(systemName:"play.circle")
@@ -60,11 +61,12 @@ struct GameView: View {
                             .font(.system(size: 28, weight: .bold))
                             .foregroundColor(Resources.Colors.mainPurple)
                     } else {
-                        if viewModel.pauseGame {
-                            Text(currentQuestion?.question ?? "")
+                        if !viewModel.isGameOnPause {
+                            Text(viewModel.currentGame?.currentQuestion.question ?? "")
                                 .multilineTextAlignment(.center)
                                 .font(.system(size: 28, weight: .bold))
                                 .foregroundColor(Resources.Colors.mainPurple)
+                                .padding(.horizontal)
                         } else {
                             Text(stopButtonName)
                                 .multilineTextAlignment(.center)
@@ -80,22 +82,27 @@ struct GameView: View {
                     
                     if startStopButtonVisible {
                         ActionButton(text: $startButtonName) {
-                            viewModel.timerValue = 20
-                            viewModel.playBackgroundMusic()
-                            currentQuestion = viewModel.randomQuestion()
+//                            viewModel.timerValue = 20
+//                            viewModel.playBackgroundMusic()
+//                            startStopButtonVisible = false
+//                            viewModel.startGame()
+                            viewModel.initilizeGame()
+                          //  viewModel.startGame()
                             startStopButtonVisible = false
-                            viewModel.startGame()
                         }
                     }
                 }
             }
         }
+        .onDisappear {
+            viewModel.gameViewDissapear()
+        }
         .navigationBarHidden(true)
     }
 }
 
-struct GameView_Previews: PreviewProvider {
-    static var previews: some View {
-        GameView(viewModel: GameViewModel())
-    }
-}
+//struct GameView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        GameView(viewModel: GameViewModel())
+//    }
+//}

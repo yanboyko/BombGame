@@ -7,9 +7,13 @@
 
 import Foundation
 
-struct QuizQuestion {
+struct QuizQuestion: Codable {
     let category: String
     let question: String
+
+    static func getRandomQuestion() -> QuizQuestion {
+        QuizQuestion.quizData.randomElement() ?? QuizQuestion(category: "", question: "")
+    }
 
     static let quizData: [QuizQuestion] = [
       
@@ -32,8 +36,6 @@ struct QuizQuestion {
             QuizQuestion(category: "Хобби и спорт", question: "Какие спортивные аксессуары или снаряжение вы предпочитаете использовать?"),
             QuizQuestion(category: "Хобби и спорт", question: "Как вы выбираете спортивные мероприятия, которые смотрите или посещаете?"),
             QuizQuestion(category: "Хобби и спорт", question: "Какие спортивные игры или компетиции вы любите играть с друзьями?")
-        
-    
     ]
 }
 

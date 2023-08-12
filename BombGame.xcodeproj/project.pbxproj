@@ -43,6 +43,7 @@
 		AB3A48962A814585004D5B6F /* Punishment.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3A48952A814585004D5B6F /* Punishment.swift */; };
 		AB3A489B2A8148C6004D5B6F /* PunishmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3A489A2A8148C6004D5B6F /* PunishmentView.swift */; };
 		AB3A489D2A8148E7004D5B6F /* PunishmentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB3A489C2A8148E7004D5B6F /* PunishmentViewModel.swift */; };
+		AB5AD50F2A86BF5900926E94 /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5AD50E2A86BF5900926E94 /* GameModel.swift */; };
 		FA40211F2A87A1A50043111B /* Часы 2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FA4021172A87A1A50043111B /* Часы 2.mp3 */; };
 		FA4021202A87A1A50043111B /* Взрыв 2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FA4021182A87A1A50043111B /* Взрыв 2.mp3 */; };
 		FA4021212A87A1A50043111B /* Мелодия 3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FA4021192A87A1A50043111B /* Мелодия 3.mp3 */; };
@@ -92,6 +93,7 @@
 		AB3A48952A814585004D5B6F /* Punishment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Punishment.swift; sourceTree = "<group>"; };
 		AB3A489A2A8148C6004D5B6F /* PunishmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PunishmentView.swift; sourceTree = "<group>"; };
 		AB3A489C2A8148E7004D5B6F /* PunishmentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PunishmentViewModel.swift; sourceTree = "<group>"; };
+		AB5AD50E2A86BF5900926E94 /* GameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
 		FA4021172A87A1A50043111B /* Часы 2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Часы 2.mp3"; sourceTree = "<group>"; };
 		FA4021182A87A1A50043111B /* Взрыв 2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Взрыв 2.mp3"; sourceTree = "<group>"; };
 		FA4021192A87A1A50043111B /* Мелодия 3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Мелодия 3.mp3"; sourceTree = "<group>"; };
@@ -307,6 +309,7 @@
 				FAAD891C2A82688A00F73927 /* SecondGameView.swift */,
 				2CB633E92A8013A100CEF402 /* GameViewModel.swift */,
 				AB3A48932A81430B004D5B6F /* QuizQuestion.swift */,
+				AB5AD50E2A86BF5900926E94 /* GameModel.swift */,
 			);
 			path = GameModule;
 			sourceTree = "<group>";
@@ -449,6 +452,7 @@
 				AB3A48962A814585004D5B6F /* Punishment.swift in Sources */,
 				2CB633F02A80144100CEF402 /* CategoriesView.swift in Sources */,
 				A12013882A8258E1003B394C /* ButtonPressActions.swift in Sources */,
+				AB5AD50F2A86BF5900926E94 /* GameModel.swift in Sources */,
 				87CF9F832A8152550080039E /* CircleButton.swift in Sources */,
 				2CB633EA2A8013A100CEF402 /* GameViewModel.swift in Sources */,
 				2CB633F22A80145F00CEF402 /* CategoriesViewModel.swift in Sources */,
