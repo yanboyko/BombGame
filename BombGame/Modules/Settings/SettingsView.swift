@@ -3,22 +3,26 @@ import SwiftUI
 struct SettingsView: View {
     @ObservedObject var viewModel: SettingsViewModel
     @EnvironmentObject var animationViewModel: AnimationViewModel
+    @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
         ZStack {
             BackgroundView()
             VStack(spacing: 32) {
                 VStack(spacing: 16) {
-                    Text("Время игры")
-                        .foregroundColor(Resources.Colors.mainPurple)
-                        .font(.system(size: 30, weight: .heavy))
+                    HStack {
+                        Text("Время игры")
+                            .foregroundColor(Resources.Colors.mainPurple)
+                            .font(.system(size: 30, weight: .heavy))
+                        Spacer()
+                    }
                     TimeButtonsView(selectedTimeButton: $viewModel.selectedTimeButton)
                 }
                 ToggleStack(
                     isOn: $viewModel.isTask,
                     text: "Игра с заданиями",
                     onToggleAction: { viewModel.isTask.toggle() }
-                    )
+                )
                 ToggleStack(
                     isOn: $viewModel.isBackgroundMusic,
                     text: "Фоновая музыка",
@@ -57,6 +61,24 @@ struct SettingsView: View {
             }
             .padding()
         }
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                VStack {
+                    Text("Настройки").font(.title).bold()
+                }
+            }
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button {
+                    presentationMode.wrappedValue.dismiss()
+                } label: {
+                    Image(systemName: "chevron.backward")
+                        .foregroundColor(.black)
+                }
+            }
+        }
+        .foregroundColor(Resources.Colors.mainPurple)
+        .navigationBarBackButtonHidden(true)
         .onAppear {
             DispatchQueue.main.async {
                 viewModel.loadSettings()
@@ -134,8 +156,8 @@ private struct TimeButton: View {
             .shadow(color: .black.opacity(0.08), radius: 12, x: 0, y: 2)
             .shadow(color: .black.opacity(0.08), radius: 1, x: 0, y: 0)
             .overlay(
-            RoundedRectangle(cornerRadius: 50)
-            .stroke(.black, lineWidth: 1)
+                RoundedRectangle(cornerRadius: 50)
+                    .stroke(.black, lineWidth: 1)
             )
         } else {
             Button {
@@ -152,12 +174,12 @@ private struct TimeButton: View {
             .shadow(color: .black.opacity(0.08), radius: 12, x: 0, y: 2)
             .shadow(color: .black.opacity(0.08), radius: 1, x: 0, y: 0)
             .overlay(
-            RoundedRectangle(cornerRadius: 50)
-            .stroke(.black, lineWidth: 1)
+                RoundedRectangle(cornerRadius: 50)
+                    .stroke(.black, lineWidth: 1)
             )
         }
         
-
+        
     }
 }
 
