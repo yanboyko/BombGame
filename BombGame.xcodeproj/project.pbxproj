@@ -190,13 +190,6 @@
 			path = Categories;
 			sourceTree = "<group>";
 		};
-		2C9445022A7FCCE700C14CAA /* StartGame */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = StartGame;
-			sourceTree = "<group>";
-		};
 		2C9445032A7FCCF200C14CAA /* Game */ = {
 			isa = PBXGroup;
 			children = (
@@ -233,7 +226,6 @@
 				2C9445042A7FCCFF00C14CAA /* EndGame */,
 				2C9445032A7FCCF200C14CAA /* Game */,
 				2C9445002A7FCC9D00C14CAA /* Main */,
-				2C9445022A7FCCE700C14CAA /* StartGame */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
