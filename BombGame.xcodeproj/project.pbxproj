@@ -52,7 +52,6 @@
 		FA4021232A87A1A50043111B /* Часы 1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FA40211B2A87A1A50043111B /* Часы 1.mp3 */; };
 		FA4021252A87A1A50043111B /* Мелодия 2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FA40211D2A87A1A50043111B /* Мелодия 2.mp3 */; };
 		FA4021262A87A1A50043111B /* Часы 3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FA40211E2A87A1A50043111B /* Часы 3.mp3 */; };
-		FAAD891D2A82688A00F73927 /* SecondGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAD891C2A82688A00F73927 /* SecondGameView.swift */; };
 		FAAD891F2A82691000F73927 /* Мелодия 1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FAAD891E2A82690F00F73927 /* Мелодия 1.mp3 */; };
 /* End PBXBuildFile section */
 
@@ -102,7 +101,6 @@
 		FA40211B2A87A1A50043111B /* Часы 1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Часы 1.mp3"; sourceTree = "<group>"; };
 		FA40211D2A87A1A50043111B /* Мелодия 2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Мелодия 2.mp3"; sourceTree = "<group>"; };
 		FA40211E2A87A1A50043111B /* Часы 3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Часы 3.mp3"; sourceTree = "<group>"; };
-		FAAD891C2A82688A00F73927 /* SecondGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondGameView.swift; sourceTree = "<group>"; };
 		FAAD891E2A82690F00F73927 /* Мелодия 1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Мелодия 1.mp3"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -298,7 +296,6 @@
 			isa = PBXGroup;
 			children = (
 				2CB633E72A80138E00CEF402 /* GameView.swift */,
-				FAAD891C2A82688A00F73927 /* SecondGameView.swift */,
 				2CB633E92A8013A100CEF402 /* GameViewModel.swift */,
 				AB3A48932A81430B004D5B6F /* QuizQuestion.swift */,
 				AB5AD50E2A86BF5900926E94 /* GameModel.swift */,
@@ -433,7 +430,6 @@
 				2C94450E2A7FCEAF00C14CAA /* CategoryButton.swift in Sources */,
 				A120138F2A8263D6003B394C /* AnimationViewModel.swift in Sources */,
 				2C9445102A7FD0BE00C14CAA /* MainView.swift in Sources */,
-				FAAD891D2A82688A00F73927 /* SecondGameView.swift in Sources */,
 				2C9444F12A7FCB4D00C14CAA /* BombGameApp.swift in Sources */,
 				2CB633E82A80138E00CEF402 /* GameView.swift in Sources */,
 				87CF9F872A8152710080039E /* Resources.swift in Sources */,
